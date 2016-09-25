@@ -53,4 +53,15 @@ README
 **jyquickhelper**
 
 Helpers for Jupyter notebooks.
+Example to run from a notebook:
 
+::
+
+    from jyquickheler import add_menu_notebook
+    add_menu_notebook()
+
+A menu is displayed:
+
+* first section of level 2
+* section section of level 2
+* ...

@@ -26,7 +26,7 @@ set_sphinx_variables(__file__, "jyquickhelper", "Xavier Dupré", 2016,
                      "better", [better.better_theme_path],
                      locals(), extlinks=dict(
                          issue=('https://github.com/sdpython/jyquickhelper/issues/%s', 'issue')),
-                     title="Programmation avec le langage Python", book=True)
+                     title="jyquickhelper", book=True)
 
 blog_root = "http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/"
 
