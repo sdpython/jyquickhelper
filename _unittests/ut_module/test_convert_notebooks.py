@@ -41,7 +41,6 @@ except ImportError:
 
 from pyquickhelper.loghelper import fLOG
 from pyquickhelper.filehelper import explore_folder_iterfile
-from pyquickhelper.ipythonhelper import upgrade_notebook, remove_execution_number
 
 
 class TestConvertNotebooks(unittest.TestCase):
@@ -51,6 +50,19 @@ class TestConvertNotebooks(unittest.TestCase):
             __file__,
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
+
+        try:
+            import jyquickhelper as skip___
+            rem = None
+        except ImportError:
+            p = os.path.dirname(src.__file__)
+            fLOG("add path", p)
+            rem = len(sys.path) - 1
+            sys.path.append(p)
+        from pyquickhelper.ipythonhelper import upgrade_notebook, remove_execution_number
+        if rem:
+            del sys.path[rem]
+
         fold = os.path.abspath(os.path.dirname(__file__))
         fold2 = os.path.normpath(
             os.path.join(fold, "..", "..", "_doc", "notebooks"))
