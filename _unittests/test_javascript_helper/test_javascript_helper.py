@@ -37,18 +37,22 @@ except ImportError:
     import pyquickhelper as skip_
 
 from pyquickhelper.loghelper import fLOG
-from src.jyquickhelper import JSONJS
+from src.jyquickhelper import RenderJS
 
 
-class TestJsonHelper(unittest.TestCase):
+class TestJavascriptHelper(unittest.TestCase):
 
-    def test_json_helper(self):
+    def test_javascript_helper(self):
         fLOG(
             __file__,
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
-        f = JSONJS(dict(a="a"))
+        try:
+            f = RenderJS("", css=["_css"], libs=["_libs"])
+        except ValueError:
+            pass
+        f = RenderJS("__ID__", css=["_css"], libs=["_libs"])
         assert f
         f._ipython_display_()
 

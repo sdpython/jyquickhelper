@@ -167,6 +167,7 @@ if is_local():
         additional_notebook_path=["pyquickhelper", "pymyinstall"],
         additional_local_path=["pyquickhelper", "pymyinstall"],
         requirements=["pyquickhelper", "pymyinstall"],
+        layout=["html"],
         add_htmlhelp=sys.platform.startswith("win"),
         coverage_options=dict(omit=["*exclude*.py"]),
         fLOG=logging_function, covtoken=("24e81424-08ba-4ca7-be23-66c1292", "'_UT_35_std' in outfile"))
