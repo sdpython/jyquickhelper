@@ -16,7 +16,7 @@ readme = 'README.rst'
 requirements = None
 
 KEYWORDS = project_var_name + ', Xavier Dupré'
-DESCRIPTION = """Lectures about programming."""
+DESCRIPTION = """Helpers for Jupyter notebooks."""
 
 
 CLASSIFIERS = [
