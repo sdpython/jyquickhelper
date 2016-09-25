@@ -14,7 +14,7 @@ jyquickhelper
     :target: https://travis-ci.org/sdpython/jyquickhelper
     :alt: Build status
     
-.. image:: https://ci.appveyor.com/api/projects/status/hsrhrnb5r3tlpb8a?svg=true
+.. image:: https://ci.appveyor.com/api/projects/status/2mtdbt67b1qkbbyy?svg=true
     :target: https://ci.appveyor.com/project/sdpython/jyquickhelper
     :alt: Build Status Windows
     
@@ -53,8 +53,10 @@ Helpers for Jupyter notebooks.
 .. exref::
     :title: Add a Javascript menu to a notebook
 
-    from jyquickheler import add_menu_notebook
-    add_menu_notebook()
+    ::
+    
+        from jyquickheler import add_menu_notebook
+        add_menu_notebook()
 
 
         

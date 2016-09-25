@@ -23,7 +23,7 @@ local_template = os.path.join(os.path.abspath(
 
 from pyquickhelper.helpgen.default_conf import set_sphinx_variables
 set_sphinx_variables(__file__, "jyquickhelper", "Xavier Dupré", 2016,
-                     "better",[better.better_theme_path],
+                     "better", [better.better_theme_path],
                      locals(), extlinks=dict(
                          issue=('https://github.com/sdpython/jyquickhelper/issues/%s', 'issue')),
                      title="Programmation avec le langage Python", book=True)
@@ -34,7 +34,7 @@ html_context = {
     'css_files': ['_static/my-styles.css'],
 }
 
-html_logo = "project_ico_small.png"
+html_logo = "project_ico.png"
 
 html_sidebars = {}
 

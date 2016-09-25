@@ -49,3 +49,6 @@ def _setup_hook(use_print=False):
     # any others things before unit tests are started
     if use_print:
         print("Success: _setup_hook")
+
+
+from .helper_in_notebook import add_notebook_menu, store_notebook_path
