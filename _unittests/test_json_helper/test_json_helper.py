@@ -50,7 +50,17 @@ class TestJsonHelper(unittest.TestCase):
 
         f = JSONJS(dict(a="a"))
         assert f
-        f._ipython_display_()
+        if hasattr(f, "_ipython_display_"):
+            f._ipython_display_()
+        else:
+            f._repr_html_()
+
+        f = JSONJS(dict(a="a"), html_only=True)
+        assert f
+        if hasattr(f, "_ipython_display_"):
+            f._ipython_display_()
+        else:
+            f._repr_html_()
 
 
 if __name__ == "__main__":

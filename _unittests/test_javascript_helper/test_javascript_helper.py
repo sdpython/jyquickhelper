@@ -38,6 +38,7 @@ except ImportError:
 
 from pyquickhelper.loghelper import fLOG
 from src.jyquickhelper import RenderJS
+from src.jyquickhelper.javascript_helper import RenderJSObj
 
 
 class TestJavascriptHelper(unittest.TestCase):
@@ -49,33 +50,38 @@ class TestJavascriptHelper(unittest.TestCase):
             OutputPrint=__name__ == "__main__")
 
         try:
-            f = RenderJS("", css=["_css"], libs=["_libs"])
+            f = RenderJSObj("", css=["_css"], libs=["_libs"])
         except ValueError:
             pass
-        f = RenderJS("__ID__", css=["_css"], libs=["_libs"])
+        f = RenderJSObj("__ID__", css=["_css"], libs=["_libs"])
         assert f
         f._ipython_display_()
 
-        f = RenderJS("__ID__", css=None, libs=["_libs"])
+        f = RenderJSObj("__ID__", css=None, libs=["_libs"])
         assert f
         f._ipython_display_()
 
-        f = RenderJS("__ID__", css=None, libs=None)
+        f = RenderJSObj("__ID__", css=None, libs=None)
         assert f
         f._ipython_display_()
 
-        f = RenderJS("__ID__", css=["_css"], libs=None)
+        f = RenderJSObj("__ID__", css=["_css"], libs=None)
         assert f
         f._ipython_display_()
 
-        f = RenderJS("__ID__", css=["_css"], libs=["_libs"], style="r")
+        f = RenderJSObj("__ID__", css=["_css"], libs=["_libs"], style="r")
+        assert f
+        f._ipython_display_()
+
+        f = RenderJSObj("__ID__", css=["_css"], libs=[
+            "_libs"], style="r", width=None, height=None)
         assert f
         f._ipython_display_()
 
         f = RenderJS("__ID__", css=["_css"], libs=[
                      "_libs"], style="r", width=None, height=None)
         assert f
-        f._ipython_display_()
+        f._repr_html_()
 
     def test_javascript_helper_config(self):
         fLOG(

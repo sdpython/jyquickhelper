@@ -8,7 +8,7 @@ import json
 from IPython.display import display_html, display_javascript
 
 
-class RenderJSON(object):
+class RenderJSONRaw(object):
     """
     render JSON using javascript
     """
@@ -30,20 +30,43 @@ class RenderJSON(object):
         self.width = width
         self.height = height
 
-    def _ipython_display_(self):
+    def generate_html(self):
         """
         overloads method
         `_ipython_display_ <http://ipython.readthedocs.io/en/stable/config/integrating.html?highlight=Integrating%20>`_.
         """
-        display_html('<div id="{}" style="height: {}; width:{};"></div>'.format(self.uuid, self.width, self.height),
-                     raw=True)
-        display_javascript("""
+        ht = '<div id="{}" style="height: {}; width:{};"></div>'.format(
+            self.uuid, self.width, self.height)
+        js = """
         require(["https://rawgit.com/caldwell/renderjson/master/renderjson.js"], function() {
         document.getElementById('%s').appendChild(renderjson(%s))
-        }); """ % (self.uuid, self.json_str), raw=True)
+        }); """ % (self.uuid, self.json_str)
+        return ht, js
 
 
-def JSONJS(data):
+class RenderJSONObj(RenderJSONRaw):
+    """
+    render JSON using javascript
+    """
+
+    def _ipython_display_(self):
+        ht, js = self.generate_html()
+        display_html(ht, raw=True)
+        display_javascript(js, raw=True)
+
+
+class RenderJSON(RenderJSONRaw):
+    """
+    render JSON using javascript, outputs only HTML
+    """
+
+    def _repr_html_(self):
+        ht, js = self.generate_html()
+        ht += "\n<script>\n{0}\n</script>\n".format(js)
+        return ht
+
+
+def JSONJS(data, html_only=True):
     """
     Inspired from `Pretty JSON Formatting in IPython Notebook <http://stackoverflow.com/questions/18873066/pretty-json-formatting-in-ipython-notebook>`_.
 
@@ -54,5 +77,15 @@ def JSONJS(data):
     `renderjson <https://github.com/caldwell/renderjson>`_.
     It returns an object with overwrite method
     `_ipython_display_ <http://ipython.readthedocs.io/en/stable/config/integrating.html?highlight=Integrating%20>`_.
+
+    .. faqref::
+        :title: Persistent javascript in a conververted notebook
+
+        After a couple of tries, it appears that it is more efficient to
+        render the javascript inside a section ``<script>...</script>``
+        when the notebook is converted to RST.
     """
-    return RenderJSON(data)
+    if html_only:
+        return RenderJSON(data)
+    else:
+        return RenderJSONObj(data)

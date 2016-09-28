@@ -7,7 +7,7 @@ import uuid
 from IPython.display import display_html, display_javascript
 
 
-class RenderJS(object):
+class RenderJSRaw(object):
     """
     render JS using javascript
     """
@@ -20,12 +20,12 @@ class RenderJS(object):
         @param  script          (str) script
         @param  width           (str) width
         @param  height          (str) height
-        @param  style           (str) style (added in ``<style>...</style>``
+        @param  style           (str) style (added in ``<style>...</style>``)
         @param  divid           (str|None) id of the div
         @param  css             (list) list of css
         @param  libs            (list) list of dependencies
-        @param  only_html       (bool) use only function `display_html <>`_
-                                and not `display_javascript <>`_ to add
+        @param  only_html       (bool) use only function `display_html <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html?highlight=display_html#IPython.display.display_html>`_
+                                and not `display_javascript <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html?highlight=display_html#IPython.display.display_javascript>`_ to add
                                 javascript to the page.
         @param  div_class       (str) class of the section ``div`` which will host the results
                                 of the javascript
@@ -150,6 +150,12 @@ class RenderJS(object):
         else:
             return ht, js
 
+
+class RenderJSObj(RenderJSRaw):
+    """
+    render JS using javascript
+    """
+
     def _ipython_display_(self):
         """
         overloads method
@@ -161,3 +167,17 @@ class RenderJS(object):
         else:
             display_html(ht, raw=True)
             display_javascript(js, raw=True)
+
+
+class RenderJS(RenderJSRaw):
+    """
+    render JS using javascript, only outputs HTML
+    """
+
+    def _repr_html_(self):
+        """
+        overloads method *_repr_html_*
+        """
+        ht, js = self.generate_html()
+        ht += "\n<script>\n{0}\n</script>\n".format(js)
+        return ht
