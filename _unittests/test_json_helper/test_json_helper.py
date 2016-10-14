@@ -62,6 +62,22 @@ class TestJsonHelper(unittest.TestCase):
         else:
             f._repr_html_()
 
+    def test_json_helper_api(self):
+        fLOG(
+            __file__,
+            self._testMethodName,
+            OutputPrint=__name__ == "__main__")
+
+        import requests
+        data_json = requests.get(
+            "http://api.worldbank.org/countries?incomeLevel=LMC&format=json").json()
+        f = JSONJS(data_json, html_only=True)
+        assert f
+        if hasattr(f, "_ipython_display_"):
+            f._ipython_display_()
+        else:
+            fLOG(f._repr_html_())
+
 
 if __name__ == "__main__":
     unittest.main()
