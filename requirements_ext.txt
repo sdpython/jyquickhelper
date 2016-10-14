@@ -4,4 +4,5 @@ docutils
 matplotlib
 pycodestyle
 pyflakes
+requests
 sphinx
