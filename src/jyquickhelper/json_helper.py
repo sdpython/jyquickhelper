@@ -22,7 +22,7 @@ class RenderJSONRaw(object):
         @param  height          (str) height
         @param  divid           (str|None) id of the div
         """
-        if isinstance(json_data, dict):
+        if isinstance(json_data, (dict, list)):
             self.json_str = json.dumps(json_data)
         else:
             self.json_str = json
