@@ -144,6 +144,7 @@ else:
     subversion = ""
 
 if "upload" in sys.argv and not subversion:
+    # avoid uploading with a wrong subversion number
     try:
         import pyquickhelper
         pyq = True
