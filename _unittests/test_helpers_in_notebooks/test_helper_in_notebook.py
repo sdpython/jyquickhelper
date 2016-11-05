@@ -60,5 +60,6 @@ class TestHelperInNotebook(unittest.TestCase):
         r = add_notebook_menu(format="rst")
         assert r is not None
 
+
 if __name__ == "__main__":
     unittest.main()
