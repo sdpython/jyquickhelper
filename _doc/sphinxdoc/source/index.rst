@@ -21,10 +21,6 @@ jyquickhelper
 .. image:: https://badge.fury.io/py/jyquickhelper.svg
     :target: http://badge.fury.io/py/jyquickhelper    
 
-.. image:: http://img.shields.io/pypi/dm/jyquickhelper.png
-    :alt: PYPI Package
-    :target: https://pypi.python.org/pypi/jyquickhelper
-    
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
     :alt: MIT License
     :target: http://opensource.org/licenses/MIT  
