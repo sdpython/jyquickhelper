@@ -6,6 +6,8 @@ Index
 .. toctree::
     :maxdepth: 2
 
+    gyexamples/index
+    gynotebooks/index    
     issues_todoextlist
     completed_todoextlist
     filechanges
@@ -13,5 +15,4 @@ Index
     glossary
     README
     license    
-    all_notebooks
     blog/blogindex    
