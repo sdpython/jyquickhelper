@@ -54,17 +54,15 @@ Helpers for Jupyter notebooks.
         from jyquickheler import add_menu_notebook
         add_menu_notebook()
 
-* :ref:`l-EX2`
-* :ref:`API <modindex>`
-* :ref:`l-notebooks`
         
 .. toctree::
     :maxdepth: 1
     
     i_index
-        
+    i_ex
+    all_notebooks
+    index_modules
 
-    
 
    
 **Links:** `github <https://github.com/sdpython/jyquickhelper/>`_,
