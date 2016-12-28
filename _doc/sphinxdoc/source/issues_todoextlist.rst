@@ -1,5 +1,4 @@
 
-
 .. _l-issues-todolist:
 
 Bugs and improvments
@@ -9,20 +8,14 @@ Bugs and improvments
 
 .. contents::
 
-
 Bugs
 ++++
 
 .. todoextlist::
     :tag: bug
 
-
 Improvments
 +++++++++++
 
 .. todoextlist::
     :tag: plus
-
-
-
-

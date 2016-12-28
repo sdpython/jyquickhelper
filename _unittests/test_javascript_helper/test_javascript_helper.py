@@ -134,7 +134,8 @@ class TestJavascriptHelper(unittest.TestCase):
             });
             });
         """.replace(" ", "").replace("\r", "").strip("\n ")
-        js = js.replace(" ", "").replace("\r", "").strip("\n ").replace("u'", "'")
+        js = js.replace(" ", "").replace(
+            "\r", "").strip("\n ").replace("u'", "'")
         self.maxDiff = None
         # fLOG(js)
         self.assertEqual(js, exp)
