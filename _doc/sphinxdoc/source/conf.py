@@ -22,7 +22,7 @@ local_template = os.path.join(os.path.abspath(
     os.path.dirname(__file__)), "phdoc_templates")
 
 from pyquickhelper.helpgen.default_conf import set_sphinx_variables, get_default_stylesheet
-set_sphinx_variables(__file__, "jyquickhelper", "Xavier Dupré", 2016,
+set_sphinx_variables(__file__, "jyquickhelper", "Xavier Dupré", 2017,
                      "better", [better.better_theme_path],
                      locals(), extlinks=dict(
                          issue=('https://github.com/sdpython/jyquickhelper/issues/%s', 'issue')),
