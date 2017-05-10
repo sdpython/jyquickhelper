@@ -82,12 +82,11 @@ def set_notebook_name_theNotebook(name="theNotebook"):
 add_notebook_menu_js = """
                 function repeat_indent_string(n){
                     var a = "" ;
-                    for ( ; n > 0 ; --n) {
+                    for ( ; n > 0 ; --n)
                         a += "    ";
-                    }
                     return a;
                 }
-                var update_menu_string = function(begin, lfirst, llast, sformat, send, keep_item) {
+                var update_menu_string = function(begin, lfirst, llast, sformat, send, keep_item, begin_format, end_format) {
                     var anchors = document.getElementsByClassName("section");
                     if (anchors.length == 0) {
                         anchors = document.getElementsByClassName("text_cell_render rendered_html");
@@ -100,9 +99,9 @@ add_notebook_menu_js = """
                     var href;
                     var tags = [];
                     var main_item = 0;
-                    for (i = 0; i <= llast; i++) {
+                    var format_open = 0;
+                    for (i = 0; i <= llast; i++)
                         tags.push("h" + i);
-                    }
 
                     for (i = 0; i < anchors.length; i++) {
                         text_memo += "**" + anchors[i].id + "--\\n";
@@ -115,7 +114,7 @@ add_notebook_menu_js = """
                                 break;
                             }
                         }
-                        if (child == null){
+                        if (child == null) {
                             text_memo += "null\\n";
                             continue;
                         }
@@ -143,15 +142,16 @@ add_notebook_menu_js = """
                             continue ;
                         }
                         if (title.endsWith('¶')) {
-                            title = title.substring(0,title.length-1).replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
+                            title = title.substring(0,title.length-1).replace("<", "&lt;")
+                                         .replace(">", "&gt;").replace("&", "&amp;");
                         }
-
                         if (title.length == 0) {
                             continue;
                         }
 
                         while (level < memo_level) {
-                            text_menu += "</ul>\\n";
+                            text_menu += end_format + "</ul>\\n";
+                            format_open -= 1;
                             memo_level -= 1;
                         }
                         if (level == lfirst) {
@@ -165,22 +165,33 @@ add_notebook_menu_js = """
                             text_menu += "<ul>\\n";
                             memo_level += 1;
                         }
-                        text_menu += repeat_indent_string(level-2) + sformat.replace("__HREF__", href).replace("__TITLE__", title);
+                        text_menu += repeat_indent_string(level-2);
+                        text_menu += begin_format + sformat.replace("__HREF__", href).replace("__TITLE__", title);
+                        format_open += 1;
                     }
                     while (1 < memo_level) {
-                        text_menu += "</ul>\\n";
+                        text_menu += end_format + "</ul>\\n";
                         memo_level -= 1;
+                        format_open -= 1;
                     }
                     text_menu += send;
                     //text_menu += "\\n" + text_memo;
+
+                    while (format_open > 0) {
+                        text_menu += end_format;
+                        format_open -= 1;
+                    }
                     return text_menu;
                 };
                 var update_menu = function() {
                     var sbegin = "__BEGIN__";
                     var sformat = __FORMAT__;
                     var send = "__END__";
+                    var begin_format = __BEGIN_FORMAT__;
+                    var end_format = __END_FORMAT__;
                     var keep_item = __KEEP_ITEM__;
-                    var text_menu = update_menu_string(sbegin, __FIRST__, __LAST__, sformat, send, keep_item);
+                    var text_menu = update_menu_string(sbegin, __FIRST__, __LAST__, sformat, send, keep_item,
+                                                       begin_format, end_format);
                     var menu = document.getElementById("__MENUID__");
                     menu.innerHTML=text_menu;
                 };
@@ -238,10 +249,12 @@ def add_notebook_menu(menu_id="my_id_menu_nb", raw=False, format="html", header=
         else:
             header = ""
         full = header + \
-            full.replace("__FORMAT__", """'<li><a href="#__HREF__">__TITLE__</a></li>'""") \
+            full.replace("__FORMAT__", """'<a href="#__HREF__">__TITLE__</a>'""") \
             .replace("__BEGIN__", "") \
             .replace("__END__", "") \
-            .replace("__KEEP_ITEM__", str(keep_item))
+            .replace("__KEEP_ITEM__", str(keep_item)) \
+            .replace("__BEGIN_FORMAT__", "'<li>'") \
+            .replace("__END_FORMAT__", "'</li>'")
     elif format == "rst":
         if header is not None and len(header) > 0:
             header = "{0}\n\n".format(header)
@@ -253,7 +266,9 @@ def add_notebook_menu(menu_id="my_id_menu_nb", raw=False, format="html", header=
                 .replace("</ul>", "") \
                 .replace("__BEGIN__", "<pre>\\n") \
                 .replace("__END__", "</pre>\\n") \
-                .replace("__KEEP_ITEM__", str(keep_item))
+                .replace("__KEEP_ITEM__", str(keep_item)) \
+                .replace("__BEGIN_FORMAT__", "") \
+                .replace("__END_FORMAT__", "")
     else:
         raise ValueError("format must be html or rst")
 
