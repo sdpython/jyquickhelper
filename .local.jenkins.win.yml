@@ -14,7 +14,7 @@ install:
   - pip install -r requirements.txt
   - pip freeze
   - pip freeze > pip_freeze.txt
-  - pip uninstall jyquickhelper
+  - pip uninstall jyquickhelper -y
 before_script:
   - if [ ${VERSION} == "2.7" ] then {{Python35pyq}}\python -u setup.py copy27 fi
   - if [ ${VERSION} == "2.7" ] then cd dist_module27 fi
