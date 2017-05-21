@@ -8,7 +8,6 @@ __version__ = "0.2"
 __author__ = "Xavier Dupré"
 __github__ = "https://github.com/sdpython/jyquickhelper"
 __url__ = "http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/index.html"
-__downloadUrl__ = "https://github.com/sdpython/jyquickhelper"
 __license__ = "MIT License"
 __blog__ = """
 <?xml version="1.0" encoding="UTF-8"?>
