@@ -52,6 +52,7 @@ Helpers for Jupyter notebooks.
 .. toctree::
     :maxdepth: 1
 
+    api/index
     i_index
     i_ex
     all_notebooks

@@ -35,8 +35,6 @@ def store_notebook_path(name="theNotebook"):
 
     See notebook :ref:`exempleoffixmenurst`.
     Try function @see fn set_notebook_name_theNotebook if this one does not work.
-
-    .. versionadded:: 1.1
     """
     js = """
         var kernel = IPython.notebook.kernel;
@@ -65,8 +63,6 @@ def set_notebook_name_theNotebook(name="theNotebook"):
     The variable ``theNotebook`` will be available in the next cells.
 
     Try function @see fn store_notebook_path if this one does not work.
-
-    .. versionadded:: 1.1
     """
     code = """var kernel = IPython.notebook.kernel;
               var body = document.body, attribs = body.attributes;
