@@ -39,6 +39,10 @@ jyquickhelper
     :alt: Waffle
     :target: https://waffle.io/sdpython/jyquickhelper
 
+.. image:: nbcov.png
+    :target: http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/all_notebooks_coverage.html
+    :alt: Notebook Coverage        
+
 Helpers for Jupyter notebooks.
 
 .. exref::

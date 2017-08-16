@@ -38,6 +38,11 @@ README
     :alt: Waffle
     :target: https://waffle.io/jyquickhelper/jyquickhelper
 
+.. image:: http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/nbcov.png
+    :target: http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/all_notebooks_coverage.html
+    :alt: Notebook Coverage    
+
+
 **Links:**
 
 * `GitHub/jyquickhelper <https://github.com/sdpython/jyquickhelper/>`_
