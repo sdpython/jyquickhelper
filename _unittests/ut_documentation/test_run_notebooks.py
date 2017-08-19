@@ -58,8 +58,8 @@ class TestRunNotebooksPython(unittest.TestCase):
             return
 
         ci = is_travis_or_appveyor()
-        raise Exception(ci)
-        kernel_name = None if ci not in ("appveyor", None) else install_python_kernel_for_unittest("jyquickhelper")
+        kernel_name = None if ci not in (
+            "appveyor", None) else install_python_kernel_for_unittest("jyquickhelper")
 
         temp = get_temp_folder(__file__, "temp_run_notebooks")
 
