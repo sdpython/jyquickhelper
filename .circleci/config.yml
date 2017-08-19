@@ -34,6 +34,12 @@ jobs:
             . venv/bin/activate
             python setup.py unittests
 
+      - run:
+          name: sphinx
+          command: |
+            . venv/bin/activate
+            python setup.py build_sphinx
+
       - store_artifacts:
           path: test-reports
           destination: test-reports
