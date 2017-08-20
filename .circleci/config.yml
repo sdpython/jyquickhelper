@@ -48,8 +48,8 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-            pip install pyquickhelper --no-deps
             pip install git+https://github.com/sdpython/sphinxcontrib-images.git --upgrade --no-deps
+            pip uninstall -y -q jyquickhelper
 
       - save_cache:
           paths:
@@ -67,7 +67,8 @@ jobs:
           command: |
             . venv/bin/activate
             python setup.py bdist_wheel
-            cp dist/*.whl test-reports
+            mkdir -p test-reports/dist
+            cp dist/*.whl test-reports/dist
 
       - run:
           name: documentation
@@ -78,7 +79,8 @@ jobs:
       - run:
           name: copy documentation
           command: |
-            cp -r  _doc/sphinxdoc/build/html test-reports/build
+            mkdir -p test-reports/doc
+            cp -r  _doc/sphinxdoc/build/html test-reports/doc
             
       - store_artifacts:
           path: test-reports
