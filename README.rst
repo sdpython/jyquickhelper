@@ -12,6 +12,9 @@ README
     :target: https://ci.appveyor.com/project/sdpython/jyquickhelper
     :alt: Build Status Windows
 
+.. image:: https://circleci.com/gh/sdpython/jyquickhelper/tree/master.svg?style=svg
+    :target: https://circleci.com/gh/sdpython/jyquickhelper/tree/master
+
 .. image:: https://badge.fury.io/py/jyquickhelper.svg
     :target: http://badge.fury.io/py/jyquickhelper
 
