@@ -24,7 +24,6 @@ install:
   # - make all
   #- conda build build_tools/conda-recipe --quiet
   - pip install -r requirements.txt
-  - pip install -r requirements_ext.txt
   - pip install -U git+https://github.com/quantopian/qgrid --no-deps  
   - pip install pyquickhelper --no-deps
   # - pip install hg+http://bitbucket.org/pygame/pygame
