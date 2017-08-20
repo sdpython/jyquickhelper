@@ -1,3 +1,5 @@
 ipython
 jupyter
 notebook
+sphinx-better-theme
+
