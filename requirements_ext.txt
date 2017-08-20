@@ -6,3 +6,4 @@ pycodestyle
 pyflakes
 requests
 sphinx
+wheel
