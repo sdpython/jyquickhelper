@@ -64,6 +64,7 @@ Helpers for Jupyter notebooks.
     i_ex
     all_notebooks
     index_modules
+    blog/blogindex
 
 **Links:** `github <https://github.com/sdpython/jyquickhelper/>`_,
 `documentation <http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/index.html>`_,
