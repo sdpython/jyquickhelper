@@ -1,7 +1,8 @@
 #-*- coding: utf-8 -*-
 """
 @file
-@brief Main file.
+@brief Module *jyquickhelper*.
+Helpers for notebooks.
 """
 
 __version__ = "0.2"
