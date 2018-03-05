@@ -11,9 +11,9 @@
     I ran into issues because it depends on
     `raphael.js <http://dmitrybaranovskiy.github.io/raphael/>`_ which also
     depends on `evejs <http://evejs.com/>`_.
-    I discovered that if I did not solve that issue myself, I was
-    was able to use `raphael.js <http://dmitrybaranovskiy.github.io/raphael/>`_
+    I discovered that if I did not solve that issue myself, I was able to use
+    `raphael.js <http://dmitrybaranovskiy.github.io/raphael/>`_
     in a notebook without noticing it
     (see `treant-js <http://www.xavierdupre.fr/app/jupytalk/helpsphinx/notebooks/jsonly_treant.html#jsonlytreantrst>`_).
     You will find to do so in
-    :ref:`notebookgraphjsrst`.
+    :ref:`nbtreantrst`.

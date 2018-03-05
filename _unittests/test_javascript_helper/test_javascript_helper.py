@@ -53,33 +53,35 @@ class TestJavascriptHelper(unittest.TestCase):
             f = RenderJSObj("", css=["_css"], libs=["_libs"])
         except ValueError:
             pass
-        f = RenderJSObj("__ID__", css=["_css"], libs=["_libs"])
+        f = RenderJSObj("__ID__", css=["_css"], libs=[
+                        "_libs"], check_urls=False)
         assert f
         f._ipython_display_()
 
-        f = RenderJSObj("__ID__", css=None, libs=["_libs"])
+        f = RenderJSObj("__ID__", css=None, libs=["_libs"], check_urls=False)
         assert f
         f._ipython_display_()
 
-        f = RenderJSObj("__ID__", css=None, libs=None)
+        f = RenderJSObj("__ID__", css=None, libs=None, check_urls=False)
         assert f
         f._ipython_display_()
 
-        f = RenderJSObj("__ID__", css=["_css"], libs=None)
-        assert f
-        f._ipython_display_()
-
-        f = RenderJSObj("__ID__", css=["_css"], libs=["_libs"], style="r")
+        f = RenderJSObj("__ID__", css=["_css"], libs=None, check_urls=False)
         assert f
         f._ipython_display_()
 
         f = RenderJSObj("__ID__", css=["_css"], libs=[
-            "_libs"], style="r", width=None, height=None)
+                        "_libs"], style="r", check_urls=False)
+        assert f
+        f._ipython_display_()
+
+        f = RenderJSObj("__ID__", css=["_css"], libs=[
+            "_libs"], style="r", width=None, height=None, check_urls=False)
         assert f
         f._ipython_display_()
 
         f = RenderJS("__ID__", css=["_css"], libs=[
-                     "_libs"], style="r", width=None, height=None)
+                     "_libs"], style="r", width=None, height=None, check_urls=False)
         assert f
         f._repr_html_()
 
@@ -100,21 +102,23 @@ class TestJavascriptHelper(unittest.TestCase):
             }
         });
         """
-        f = RenderJS(script, divid="MYID", css=["http://c3js.org/css/c3.css"],
-                     libs=[dict(name="d3", path="http://d3js.org/d3.v3.min.js", exports="d3"),
-                           dict(name="c3", path="http://c3js.org/js/c3.min-4c5bef8f.js", exports="c3", deps=["d3"])])
+        f = RenderJS(script, divid="MYID", css=["https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.css"],
+                     libs=[dict(name="d3", path="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js", exports="d3"),
+                           dict(name="c3", path="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.js",
+                                exports="c3", deps=["d3"])])
         assert f
         ht, js = f.generate_html()
         assert ht
         assert js
-        exp = """<div id="MYID-css"><link rel="stylesheet" href="http://c3js.org/css/c3.css" type="text/css" />""" + \
+        exp = """<div id="MYID-css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.css" type="text/css" />""" + \
               """<div id="MYID" style="height:100%;width:100%;"></div></div>"""
-        assert exp in ht
+
+        self.assertIn(exp, ht)
         exp = """
             require.config({
             paths:{
-            'd3':'http://d3js.org/d3.v3.min',
-            'c3':'http://c3js.org/js/c3.min-4c5bef8f',
+            'd3':'https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min',
+            'c3':'https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min',
             },
             shim:{
             'c3':{'deps':['d3'],'exports':'c3'},

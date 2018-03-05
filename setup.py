@@ -36,7 +36,13 @@ CLASSIFIERS = [
 packages = find_packages('src', exclude='src')
 package_dir = {k: "src/" + k.replace(".", "/") for k in packages}
 package_data = {
-    project_var_name + ".js": ["*.js", "*.css"],
+    project_var_name + ".js.c3": ["*.js", "*.css", "*.txt"],
+    project_var_name + ".js.custom": ["*.js", "*.css", "*.txt"],
+    project_var_name + ".js.d3": ["*.js", "*.css", "*.txt"],
+    project_var_name + ".js.eve": ["*.js", "*.css", "*.txt"],
+    project_var_name + ".js.raphael": ["*.js", "*.css", "*.txt"],
+    project_var_name + ".js.renderjson": ["*.js", "*.css", "*.txt"],
+    project_var_name + ".js.treant": ["*.js", "*.css", "*.txt"],
 }
 
 ############

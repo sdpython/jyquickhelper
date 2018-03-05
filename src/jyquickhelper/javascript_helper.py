@@ -3,20 +3,55 @@
 @file
 @brief Helpers around JSON
 """
+import sys
 import uuid
 from IPython.display import display_html, display_javascript
+
+if sys.version_info[0] < 3:
+    import urllib2 as liburl
+else:
+    import urllib.request as liburl
+    import urllib.error as liberror
+
+
+class UrlNotFoundError(Exception):
+    """
+    Raised when a url does not exist.
+    """
+
+    def __init__(self, url, code):
+        Exception.__init__(
+            self, "Url not found: returned code={0} for '{1}'".format(code, url))
+
+
+def check_url(url):
+    if sys.version_info[0] < 3:
+        ret = liburl.urlopen(url)
+        if ret.code == 200:
+            ret.close()
+            return True
+        else:
+            raise UrlNotFoundError(url, ret.code)
+    else:
+        try:
+            liburl.urlopen(url)
+            return True
+        except liberror.HTTPError as e:
+            raise UrlNotFoundError(url, e.code)
+        except liberror.URLError as e:
+            raise UrlNotFoundError(url, e.reason)
+        except Exception as e:
+            raise Exception("Issue with url '{0}'".format(url)) from e
 
 
 class RenderJSRaw(object):
     """
-    render JS using javascript
+    Adds :epkg:`javascript` into a noteboook.
     """
 
     def __init__(self, script, width="100%", height="100%", divid=None, css=None,
-                 libs=None, style=None, only_html=False, div_class=None):
+                 libs=None, style=None, only_html=False, div_class=None, check_urls=True):
         """
-        initialize with a JS script
-
         @param  script          (str) script
         @param  width           (str) width
         @param  height          (str) height
@@ -29,6 +64,7 @@ class RenderJSRaw(object):
                                 javascript to the page.
         @param  div_class       (str) class of the section ``div`` which will host the results
                                 of the javascript
+        @param  check_urls      (bool) by default, check url exists
         """
         self.script = script
         self.uuid = divid if divid else "M" + \
@@ -43,13 +79,24 @@ class RenderJSRaw(object):
         if "__ID__" not in script:
             raise ValueError(
                 "The sript does not contain any string __ID__. It is replaced by the ID value in script:\n{0}".format(script))
+        if check_urls:
+            if css is not None:
+                for c in css:
+                    check_url(c)
+            if libs is not None:
+                for l in libs:
+                    if isinstance(l, dict):
+                        check_url(l['path'])
+                    else:
+                        check_url(l)
 
     def generate_html(self):
         """
-        overloads method
+        Overloads method
         `_ipython_display_ <http://ipython.readthedocs.io/en/stable/config/integrating.html?highlight=Integrating%20>`_.
 
-        @return     HTML text, Javascript text
+        @return     `HTML <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.HTML>`_ text,
+                    `Javascript <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Javascript>`_ text
         """
         if self.style:
             style = "<style>{0}</style>".format(self.style)
@@ -153,7 +200,7 @@ class RenderJSRaw(object):
 
 class RenderJSObj(RenderJSRaw):
     """
-    render JS using javascript
+    Renders JS using :epkg:`javascript`.
     """
 
     def _ipython_display_(self):
@@ -171,12 +218,12 @@ class RenderJSObj(RenderJSRaw):
 
 class RenderJS(RenderJSRaw):
     """
-    render JS using javascript, only outputs HTML
+    Renders :epkg:`javascript`, only outputs :epkg:`HTML`.
     """
 
     def _repr_html_(self):
         """
-        overloads method *_repr_html_*
+        Overloads method *_repr_html_*.
         """
         ht, js = self.generate_html()
         ht += "\n<script>\n{0}\n</script>\n".format(js)

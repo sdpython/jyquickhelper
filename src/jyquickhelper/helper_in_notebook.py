@@ -8,7 +8,7 @@ from IPython.display import Javascript, HTML
 
 def store_notebook_path(name="theNotebook"):
     """
-    Return Javascript object to execute in order to store
+    Returns :epkg:`javascript` object to execute in order to store
     the notebook file name into a variable
     available from the notebook.
 
@@ -198,7 +198,8 @@ add_notebook_menu_js = """
 def add_notebook_menu(menu_id="my_id_menu_nb", raw=False, format="html", header=None,
                       first_level=2, last_level=4, keep_item=None):
     """
-    add javascript and HTML to the notebook which gathers all in the notebook and builds a menu
+    Adds :epkg:`javascript` and :epkg:`HTML` to the notebook
+    which gathers all in the notebook and builds a menu.
 
     @param      menu_id         menu_id
     @param      raw             raw HTML and Javascript
@@ -213,10 +214,10 @@ def add_notebook_menu(menu_id="my_id_menu_nb", raw=False, format="html", header=
     In a notebook, it is easier to do by using a magic command
     ``%%html`` for the HTML and another one
     ``%%javascript`` for the Javascript.
-    This function returns a full text with HTML and
-    Javascript.
+    This function returns a full text with :epkg:`HTML` and
+    :epkg:`javascript`.
 
-    If the format is RST, the menu can be copied/pasted in a text cell.
+    If the format is :epkg:`RST`, the menu can be copied/pasted in a text cell.
 
     On the notebook, the instruction would work::
 
