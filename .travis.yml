@@ -27,5 +27,6 @@ install:
   - pip install -U git+https://github.com/quantopian/qgrid --no-deps  
   - pip install pyquickhelper --no-deps
   # - pip install hg+http://bitbucket.org/pygame/pygame
+  - pip uninstall -y -q jyquickhelper
 script:
   - python setup.py unittests
