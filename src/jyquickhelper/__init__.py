@@ -5,7 +5,7 @@
 Helpers for notebooks.
 """
 
-__version__ = "0.2"
+__version__ = "0.3"
 __author__ = "Xavier Dupré"
 __github__ = "https://github.com/sdpython/jyquickhelper"
 __url__ = "http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/index.html"
@@ -52,5 +52,5 @@ def _setup_hook(use_print=False):
 
 
 from .helper_in_notebook import add_notebook_menu, store_notebook_path
-from .json_helper import JSONJS
-from .javascript_helper import RenderJS
+from .jspy import JSONJS, RenderJS
+

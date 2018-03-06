@@ -6,6 +6,13 @@ import sys
 import os
 import unittest
 
+try:
+    from io import StringIO
+    from contextlib import redirect_stdout
+    testoutput = True
+except ImportError:
+    testoutput = False
+
 
 try:
     import src
@@ -38,7 +45,7 @@ except ImportError:
 
 from pyquickhelper.loghelper import fLOG
 from src.jyquickhelper import RenderJS
-from src.jyquickhelper.javascript_helper import RenderJSObj
+from src.jyquickhelper.jspy.javascript_helper import RenderJSObj
 
 
 class TestJavascriptHelper(unittest.TestCase):
@@ -53,37 +60,55 @@ class TestJavascriptHelper(unittest.TestCase):
             f = RenderJSObj("", css=["_css"], libs=["_libs"])
         except ValueError:
             pass
-        f = RenderJSObj("__ID__", css=["_css"], libs=[
-                        "_libs"], check_urls=False)
-        assert f
-        f._ipython_display_()
+        f = RenderJSObj("__ID__", css=["_css"],
+                        libs=["_libs"], check_urls=False)
+        if testoutput:
+            st = StringIO()
+            with redirect_stdout(st):
+                f._ipython_display_()
+            self.assertIn("{'text/html': '<div id=", st.getvalue())
 
         f = RenderJSObj("__ID__", css=None, libs=["_libs"], check_urls=False)
-        assert f
-        f._ipython_display_()
+        if testoutput:
+            st = StringIO()
+            with redirect_stdout(st):
+                f._ipython_display_()
+            self.assertIn("{'text/html': '<div id=", st.getvalue())
 
         f = RenderJSObj("__ID__", css=None, libs=None, check_urls=False)
-        assert f
-        f._ipython_display_()
+        if testoutput:
+            st = StringIO()
+            with redirect_stdout(st):
+                f._ipython_display_()
+            self.assertIn("{'text/html': '<div id=", st.getvalue())
 
         f = RenderJSObj("__ID__", css=["_css"], libs=None, check_urls=False)
-        assert f
-        f._ipython_display_()
+        if testoutput:
+            st = StringIO()
+            with redirect_stdout(st):
+                f._ipython_display_()
+            self.assertIn("{'text/html': '<div id=", st.getvalue())
 
         f = RenderJSObj("__ID__", css=["_css"], libs=[
                         "_libs"], style="r", check_urls=False)
-        assert f
-        f._ipython_display_()
+        if testoutput:
+            st = StringIO()
+            with redirect_stdout(st):
+                f._ipython_display_()
+            self.assertIn("{'text/html': '<div id=", st.getvalue())
 
         f = RenderJSObj("__ID__", css=["_css"], libs=[
             "_libs"], style="r", width=None, height=None, check_urls=False)
-        assert f
-        f._ipython_display_()
+        if testoutput:
+            st = StringIO()
+            with redirect_stdout(st):
+                f._ipython_display_()
+            self.assertIn("{'text/html': '<div id=", st.getvalue())
 
         f = RenderJS("__ID__", css=["_css"], libs=[
                      "_libs"], style="r", width=None, height=None, check_urls=False)
-        assert f
-        f._repr_html_()
+        res = f._repr_html_()
+        self.assertIn("require(['_libs'], function() {", res)
 
     def test_javascript_helper_config(self):
         fLOG(
