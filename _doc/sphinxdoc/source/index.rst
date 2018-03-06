@@ -44,14 +44,6 @@ jyquickhelper
 
 Helpers for Jupyter notebooks.
 
-.. exref::
-    :title: Add a Javascript menu to a notebook
-
-    ::
-
-        from jyquickheler import add_menu_notebook
-        add_menu_notebook()
-
 .. toctree::
     :maxdepth: 1
 
@@ -61,6 +53,41 @@ Helpers for Jupyter notebooks.
     all_notebooks
     index_modules
     blog/blogindex
+
+.. exref::
+    :title: Add a Javascript menu to a notebook
+
+    ::
+
+        from jyquickheler import add_menu_notebook
+        add_menu_notebook()
+
+    See :ref:`notebookhtmlsvgrst`.
+
+.. exref::
+    :title: Render Javascript in a notebook
+
+    ::
+
+        from jyquickhelper import RenderJS
+        css = ["https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.css"]
+        RenderJS(script, css=css, libs = [
+                        dict(path="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js",
+                             name="d3", exports="d3"),
+                        dict(path="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.js",
+                             name="c3", exports="c3", deps=["d3"])])
+
+    See :ref:`nbc3rst` or :ref:`nbmermaidrst`.
+
+.. exref::
+    :title: Visualize JSON in a notebook.
+
+    ::
+
+        from jyquickhelper import JSONJS
+        JSONJS(dict(name="xavier", city="Paris"), html_only=True, show_to_level=3)
+
+    See :ref:`nbjsonrst`.
 
 **Links:** `github <https://github.com/sdpython/jyquickhelper/>`_,
 `documentation <http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/index.html>`_,

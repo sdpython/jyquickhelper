@@ -62,3 +62,25 @@ A menu is displayed:
 * first section of level 2
 * section section of level 2
 * ...
+
+It helps rendering javascript:
+
+::
+
+    from jyquickhelper import RenderJS
+    css = ["https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.css"]
+    RenderJS(script, css=css, libs = [
+                    dict(path="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js",
+                         name="d3", exports="d3"),
+                    dict(path="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.js",
+                         name="c3", exports="c3", deps=["d3"])])
+
+See `c3.ipynb <http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/notebooks/nb_c3.html>`_.
+Or visualizing JSON:
+
+::
+
+    from jyquickhelper import JSONJS
+    JSONJS(dict(name="xavier", city="Paris"), html_only=True, show_to_level=3)
+
+See `nb_json.ipynb <http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/notebooks/nb_json.html>`_.
