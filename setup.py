@@ -44,6 +44,7 @@ package_data = {
     project_var_name + ".js.raphael": ["*.js", "*.css", "*.txt"],
     project_var_name + ".js.renderjson": ["*.js", "*.css", "*.txt"],
     project_var_name + ".js.treant": ["*.js", "*.css", "*.txt"],
+    project_var_name + ".js.vizjs": ["*.js", "*.css", "*.txt"],
 }
 
 ############

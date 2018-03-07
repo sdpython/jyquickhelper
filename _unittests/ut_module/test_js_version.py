@@ -45,6 +45,7 @@ from src.jyquickhelper.js.treant import version as vtr
 from src.jyquickhelper.js.custom import version as vc
 from src.jyquickhelper.js.renderjson import version as vjs
 from src.jyquickhelper.js.mermaid import version as vme
+from src.jyquickhelper.js.vizjs import version as vjz
 
 
 class TestJsVersion(unittest.TestCase):
@@ -55,7 +56,7 @@ class TestJsVersion(unittest.TestCase):
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
-        for f in [vc3, vd3, vexe, vraph, vtr, vc, vjs, vme]:
+        for f in [vc3, vd3, vexe, vraph, vtr, vc, vjs, vme, vjz]:
             spl = f().split('.')
             self.assertGreater(len(spl), 1)
 
