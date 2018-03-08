@@ -69,10 +69,21 @@ class RenderJSRaw(object):
         self.script = script
         self.uuid = divid if divid else "M" + \
             str(uuid.uuid4()).replace("-", "")
-        self.width = width
-        self.height = height
         self.libs = libs
         self.css = css
+        if style is None:
+            style = ''
+            if width is not None and 'width' not in style:
+                style += "width:{0};".format(width)
+            if height is not None and 'height' not in style:
+                style += "height:{0};".format(height)
+            if not style:
+                style = None
+        else:
+            if width is not None and 'width' not in style:
+                style += "width:{0};".format(width)
+            if height is not None and 'height' not in style:
+                style += "height:{0};".format(height)
         self.style = style
         self.only_html = only_html
         self.div_class = div_class
@@ -99,29 +110,22 @@ class RenderJSRaw(object):
                     `Javascript <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Javascript>`_ text
         """
         if self.style:
-            style = "<style>{0}</style>".format(self.style)
+            style = ' style="{0}"'.format(self.style)
         else:
             style = ""
         if self.div_class:
             divcl = ' class="{0}"'.format(self.div_class)
         else:
             divcl = ""
-        dims = ""
-        if self.height:
-            dims += "height:{0};".format(self.height)
-        if self.width:
-            dims += "width:{0};".format(self.width)
-        if len(dims) > 0:
-            dims = ' style="{0}"'.format(dims)
         if self.css:
             css = "".join(
                 '<link rel="stylesheet" href="{0}" type="text/css" />'.format(c) for c in self.css)
-            ht = '<div id="{0}-css">{2}{3}<div{4} id="{0}"{1}></div></div>'.format(self.uuid,
-                                                                                   dims, css, style, divcl)
+            ht = '<div id="{uuid}-css"{style}>{css}<div{divcl} id="{uuid}"></div></div>'.format(uuid=self.uuid,
+                                                                                                css=css, style=style, divcl=divcl)
         else:
             css = ""
-            ht = '<div id="{0}-cont"{1}>{2}<div{3} id="{0}"></div></div>'.format(
-                self.uuid, dims, style, divcl)
+            ht = '<div id="{uuid}-cont"{style}><div{divcl} id="{uuid}"></div></div>'.format(uuid=self.uuid,
+                                                                                            style=style, divcl=divcl)
 
         script = self.script.replace("__ID__", self.uuid)
         if self.libs:
