@@ -137,10 +137,13 @@ class TestJavascriptHelper(unittest.TestCase):
         ht, js = f.generate_html()
         assert ht
         assert js
-        exp = """<div id="MYID-css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.css" type="text/css" />""" + \
-              """<div id="MYID" style="height:100%;width:100%;"></div></div>"""
+        exp = """<div id="MYID-css" style="width:100%;height:100%;"><link rel="stylesheet" """ + \
+              """href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.css" type="text/css" />""" + \
+              """<div id="MYID"></div></div>"""
 
-        self.assertIn(exp, ht)
+        if exp not in ht:
+            raise Exception('Unable to find\n{0}\n--IN--\n{1}'.format(exp, ht))
+
         exp = """
             require.config({
             paths:{
