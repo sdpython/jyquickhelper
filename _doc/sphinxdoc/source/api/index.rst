@@ -6,3 +6,4 @@ API Summary
     :maxdepth: 2
 
     notebook
+    render

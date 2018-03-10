@@ -70,7 +70,7 @@ class RenderJSON(RenderJSONRaw):
         return ht
 
 
-def JSONJS(data, html_only=True, show_to_level=None):
+def JSONJS(data, only_html=True, show_to_level=None):
     """
     Inspired from `Pretty JSON Formatting in IPython Notebook <http://stackoverflow.com/questions/18873066/pretty-json-formatting-in-ipython-notebook>`_.
 
@@ -88,9 +88,9 @@ def JSONJS(data, html_only=True, show_to_level=None):
 
         After a couple of tries, it appears that it is more efficient to
         render the javascript inside a section ``<script>...</script>``
-        when the notebook is converted to RST (*html_only=True*).
+        when the notebook is converted to RST (*only_html=True*).
     """
-    if html_only:
+    if only_html:
         return RenderJSON(data, show_to_level=show_to_level)
     else:
         return RenderJSONObj(data, show_to_level=show_to_level)

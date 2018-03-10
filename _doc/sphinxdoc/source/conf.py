@@ -71,10 +71,13 @@ latex_elements['preamble'] += custom_preamble
 mathdef_link_only = True
 
 # references
+epkg_dictionary['DOT'] = 'https://en.wikipedia.org/wiki/DOT_(graph_description_language)'
 epkg_dictionary['eve'] = 'http://evejs.com/'
 epkg_dictionary['HTML'] = 'https://en.wikipedia.org/wiki/HTML'
 epkg_dictionary['javascript'] = 'https://en.wikipedia.org/wiki/JavaScript'
 epkg_dictionary['JSON'] = 'https://en.wikipedia.org/wiki/JSON'
+epkg_dictionary['notebook'] = 'http://jupyter.org/'
 epkg_dictionary['raphael'] = 'http://dmitrybaranovskiy.github.io/raphael/'
 epkg_dictionary['renderjson'] = 'https://github.com/caldwell/renderjson'
 epkg_dictionary['RST'] = 'https://en.wikipedia.org/wiki/RST'
+epkg_dictionary['viz.js'] = 'https://github.com/mdaines/viz.js/'

@@ -120,12 +120,11 @@ class RenderJSRaw(object):
         if self.css:
             css = "".join(
                 '<link rel="stylesheet" href="{0}" type="text/css" />'.format(c) for c in self.css)
-            ht = '<div id="{uuid}-css"{style}>{css}<div{divcl} id="{uuid}"></div></div>'.format(uuid=self.uuid,
-                                                                                                css=css, style=style, divcl=divcl)
+            ht = '<div id="{uuid}-css"{style}>{css}<div{divcl} id="{uuid}"></div></div>'.format(
+                uuid=self.uuid, css=css, style=style, divcl=divcl)
         else:
-            css = ""
-            ht = '<div id="{uuid}-cont"{style}><div{divcl} id="{uuid}"></div></div>'.format(uuid=self.uuid,
-                                                                                            style=style, divcl=divcl)
+            ht = '<div id="{uuid}-cont"{style}><div{divcl} id="{uuid}"></div></div>'.format(
+                uuid=self.uuid, style=style, divcl=divcl)
 
         script = self.script.replace("__ID__", self.uuid)
         if self.libs:
@@ -230,5 +229,6 @@ class RenderJS(RenderJSRaw):
         Overloads method *_repr_html_*.
         """
         ht, js = self.generate_html()
-        ht += "\n<script>\n{0}\n</script>\n".format(js)
+        if js is not None:
+            ht += "\n<script>\n{0}\n</script>\n".format(js)
         return ht

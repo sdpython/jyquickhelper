@@ -2,5 +2,6 @@
 @file
 @brief Shortcut to *jspy*.
 """
-from .json_helper import JSONJS
-from .javascript_helper import RenderJS
+from .render_nb_js import RenderJS
+from .render_nb_json import JSONJS
+from .render_nb_js_dot import RenderJsDot

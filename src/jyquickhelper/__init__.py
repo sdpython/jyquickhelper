@@ -52,4 +52,4 @@ def _setup_hook(use_print=False):
 
 
 from .helper_in_notebook import add_notebook_menu, store_notebook_path
-from .jspy import JSONJS, RenderJS
+from .jspy import JSONJS, RenderJS, RenderJsDot

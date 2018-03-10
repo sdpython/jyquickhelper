@@ -19,12 +19,10 @@ javascript
 .. contents::
     :local:
 
-.. autosignature:: jyquickhelper.helper_in_notebook.add_notebook_menu
+.. autosignature:: jyquickhelper.jspy.helper_in_notebook.add_notebook_menu
 
-.. autosignature:: jyquickhelper.json_helper.JSONJS
-
-.. autosignature:: jyquickhelper.javascript_helper.RenderJS
+.. autosignature:: jyquickhelper.jspy.render_nb_js.RenderJS
     :members:
 
-.. autosignature:: jyquickhelper.javascript_helper.RenderJSObj
+.. autosignature:: jyquickhelper.jspy.render_nb_js.RenderJSObj
     :members:

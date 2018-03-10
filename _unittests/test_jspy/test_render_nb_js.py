@@ -46,13 +46,13 @@ except ImportError:
 from pyquickhelper.loghelper import fLOG
 from pyquickhelper.pycode import skipif_circleci
 from src.jyquickhelper import RenderJS
-from src.jyquickhelper.jspy.javascript_helper import RenderJSObj
+from src.jyquickhelper.jspy.render_nb_js import RenderJSObj
 
 
-class TestJavascriptHelper(unittest.TestCase):
+class TestRenderNbJs(unittest.TestCase):
 
     @skipif_circleci('output is empty, probably already captured, should be investigated')
-    def test_javascript_helper(self):
+    def test_render_nb_js(self):
         fLOG(
             __file__,
             self._testMethodName,
@@ -112,7 +112,7 @@ class TestJavascriptHelper(unittest.TestCase):
         res = f._repr_html_()
         self.assertIn("require(['_libs'], function() {", res)
 
-    def test_javascript_helper_config(self):
+    def test_render_nb_js_config(self):
         fLOG(
             __file__,
             self._testMethodName,

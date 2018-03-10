@@ -40,9 +40,9 @@ from pyquickhelper.loghelper import fLOG
 from src.jyquickhelper import JSONJS
 
 
-class TestJsonHelper(unittest.TestCase):
+class TestRenderNbJson(unittest.TestCase):
 
-    def test_json_helper(self):
+    def test_render_nb_json(self):
         fLOG(
             __file__,
             self._testMethodName,
@@ -55,14 +55,14 @@ class TestJsonHelper(unittest.TestCase):
         else:
             f._repr_html_()
 
-        f = JSONJS(dict(a="a"), html_only=True)
+        f = JSONJS(dict(a="a"), only_html=True)
         assert f
         if hasattr(f, "_ipython_display_"):
             f._ipython_display_()
         else:
             f._repr_html_()
 
-    def test_json_helper_api(self):
+    def test_render_nb_json_api(self):
         fLOG(
             __file__,
             self._testMethodName,
@@ -71,7 +71,7 @@ class TestJsonHelper(unittest.TestCase):
         import requests
         data_json = requests.get(
             "http://api.worldbank.org/countries?incomeLevel=LMC&format=json").json()
-        f = JSONJS(data_json, html_only=True)
+        f = JSONJS(data_json, only_html=True)
         assert f
         if hasattr(f, "_ipython_display_"):
             f._ipython_display_()
