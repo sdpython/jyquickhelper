@@ -46,6 +46,7 @@ package_data = {
     project_var_name + ".js.svg": ["*.js", "*.css", "*.txt"],
     project_var_name + ".js.svgpanzoom": ["*.js", "*.css", "*.txt"],
     project_var_name + ".js.treant": ["*.js", "*.css", "*.txt"],
+    project_var_name + ".js.visjs": ["*.js", "*.css", "*.txt"],
     project_var_name + ".js.vizjs": ["*.js", "*.css", "*.txt"],
 }
 

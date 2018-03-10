@@ -120,10 +120,10 @@ class RenderJSRaw(object):
         if self.css:
             css = "".join(
                 '<link rel="stylesheet" href="{0}" type="text/css" />'.format(c) for c in self.css)
-            ht = '<div id="{uuid}-css"{style}>{css}<div{divcl} id="{uuid}"></div></div>'.format(
+            ht = '<div id="{uuid}-css">{css}<div{divcl} id="{uuid}"{style}></div></div>'.format(
                 uuid=self.uuid, css=css, style=style, divcl=divcl)
         else:
-            ht = '<div id="{uuid}-cont"{style}><div{divcl} id="{uuid}"></div></div>'.format(
+            ht = '<div id="{uuid}-cont"><div{divcl} id="{uuid}"{style}></div></div>'.format(
                 uuid=self.uuid, style=style, divcl=divcl)
 
         script = self.script.replace("__ID__", self.uuid)
