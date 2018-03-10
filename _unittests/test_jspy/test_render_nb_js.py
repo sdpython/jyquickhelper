@@ -137,9 +137,9 @@ class TestRenderNbJs(unittest.TestCase):
         ht, js = f.generate_html()
         assert ht
         assert js
-        exp = """<div id="MYID-css" style="width:100%;height:100%;"><link rel="stylesheet" """ + \
+        exp = """<div id="MYID-css"><link rel="stylesheet" """ + \
               """href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.css" type="text/css" />""" + \
-              """<div id="MYID"></div></div>"""
+              """<div id="MYID" style="width:100%;height:100%;"></div></div>"""
 
         if exp not in ht:
             raise Exception('Unable to find\n{0}\n--IN--\n{1}'.format(exp, ht))
