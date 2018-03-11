@@ -267,3 +267,4 @@ _unittests/run_unittests.py.out
 *.err
 _doc/sphinxdoc/source/phdoc_static/style_notebook_snippet.css
 dist
+_doc/notebooks/custom_demo.js
