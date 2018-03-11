@@ -36,17 +36,17 @@ CLASSIFIERS = [
 packages = find_packages('src', exclude='src')
 package_dir = {k: "src/" + k.replace(".", "/") for k in packages}
 package_data = {
-    project_var_name + ".js.c3": ["*.js", "*.css", "*.txt"],
-    project_var_name + ".js.custom": ["*.js", "*.css", "*.txt"],
-    project_var_name + ".js.d3": ["*.js", "*.css", "*.txt"],
-    project_var_name + ".js.eve": ["*.js", "*.css", "*.txt"],
-    project_var_name + ".js.mermaid": ["*.js", "*.css", "*.txt"],
-    project_var_name + ".js.raphael": ["*.js", "*.css", "*.txt"],
+    # project_var_name + ".js.c3": ["*.js", "*.css", "*.txt"],
+    # project_var_name + ".js.custom": ["*.js", "*.css", "*.txt"],
+    # project_var_name + ".js.d3": ["*.js", "*.css", "*.txt"],
+    # project_var_name + ".js.eve": ["*.js", "*.css", "*.txt"],
+    # project_var_name + ".js.mermaid": ["*.js", "*.css", "*.txt"],
+    # project_var_name + ".js.raphael": ["*.js", "*.css", "*.txt"],
     project_var_name + ".js.renderjson": ["*.js", "*.css", "*.txt"],
-    project_var_name + ".js.svg": ["*.js", "*.css", "*.txt"],
-    project_var_name + ".js.svgpanzoom": ["*.js", "*.css", "*.txt"],
-    project_var_name + ".js.treant": ["*.js", "*.css", "*.txt"],
-    project_var_name + ".js.visjs": ["*.js", "*.css", "*.txt"],
+    # project_var_name + ".js.svg": ["*.js", "*.css", "*.txt"],
+    # project_var_name + ".js.svgpanzoom": ["*.js", "*.css", "*.txt"],
+    # project_var_name + ".js.treant": ["*.js", "*.css", "*.txt"],
+    # project_var_name + ".js.visjs": ["*.js", "*.css", "*.txt"],
     project_var_name + ".js.vizjs": ["*.js", "*.css", "*.txt"],
 }
 
