@@ -37,67 +37,93 @@ except ImportError:
     import pyquickhelper as skip_
 
 from pyquickhelper.loghelper import fLOG
-from src.jyquickhelper import RenderJsDot
+from src.jyquickhelper import RenderJsVis
 
 
-class TestRenderNbJsDot(unittest.TestCase):
+class TestRenderNbJsVis(unittest.TestCase):
 
-    def test_render_nb_js_dot(self):
+    script = """
+      var nodes = new vis.DataSet([
+        {id: 1, label: 'Node 1'},
+        {id: 2, label: 'Node 2'},
+        {id: 3, label: 'Node 3'},
+        {id: 4, label: 'Node 4'},
+        {id: 5, label: 'Node 5'}
+      ]);
+
+      // create an array with edges
+      var edges = new vis.DataSet([
+        {from: 1, to: 3},
+        {from: 1, to: 2},
+        {from: 2, to: 4},
+        {from: 2, to: 5},
+        {from: 3, to: 3}
+      ]);
+
+      // create a network
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+      var options = {};
+      """
+
+    def test_render_nb_js_vis(self):
         fLOG(
             __file__,
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
-        f = RenderJsDot(dot='digraph{ a -> b; }')
+        f = RenderJsVis(TestRenderNbJsVis.script)
         assert f
         if hasattr(f, "_ipython_display_"):
             f._ipython_display_()
         else:
             f._repr_html_()
 
-        f = RenderJsDot(dot='digraph{ a -> b; }', only_html=True)
+        f = RenderJsVis(TestRenderNbJsVis.script, only_html=True)
         out = f._repr_html_()
-        self.assertIn('var svgGraph = Viz("', out)
+        self.assertIn('var network = new vis.Network(', out)
         self.assertNotIn('None', out)
 
-    def test_render_nb_js_dot_api(self):
+    def test_render_nb_js_vis_api(self):
         fLOG(
             __file__,
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
-        f = RenderJsDot(dot='digraph{ a -> b; }', only_html=True)
+        f = RenderJsVis(TestRenderNbJsVis.script, only_html=True)
         out = f._repr_html_()
-        self.assertIn('var svgGraph = Viz("', out)
+        self.assertIn('var network = new vis.Network(', out)
         self.assertNotIn('None', out)
 
-    def test_render_nb_js_dot_local(self):
+    def test_render_nb_js_vis_local(self):
         fLOG(
             __file__,
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
-        f = RenderJsDot(dot='digraph{ a -> b; }')
+        f = RenderJsVis(TestRenderNbJsVis.script)
         assert f
         if hasattr(f, "_ipython_display_"):
             f._ipython_display_()
         else:
             f._repr_html_()
 
-        f = RenderJsDot(dot='digraph{ a -> b; }', only_html=True, local=True)
+        f = RenderJsVis(TestRenderNbJsVis.script, only_html=True, local=True)
         out = f._repr_html_()
-        self.assertIn('var svgGraph = Viz("', out)
+        self.assertIn('var network = new vis.Network(', out)
         self.assertNotIn('None', out)
 
-    def test_render_nb_js_dot_api_local(self):
+    def test_render_nb_js_vis_api_local(self):
         fLOG(
             __file__,
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
-        f = RenderJsDot(dot='digraph{ a -> b; }', only_html=True, local=True)
+        f = RenderJsVis(TestRenderNbJsVis.script, only_html=True, local=True)
         out = f._repr_html_()
-        self.assertIn('var svgGraph = Viz("', out)
+        self.assertIn('var network = new vis.Network(', out)
         self.assertNotIn('None', out)
 
 

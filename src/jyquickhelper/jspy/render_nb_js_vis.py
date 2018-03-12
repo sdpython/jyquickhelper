@@ -1,24 +1,23 @@
 # -*- coding: utf-8 -*-
 """
 @file
-@brief Renders a graph in Javascript.
+@brief Renders a network in Javascript.
 """
 import os
 from .render_nb_js import RenderJS
 
 
-class RenderJsDot(RenderJS):
+class RenderJsVis(RenderJS):
     """
-    Renders a graph in a :epkg:`notebook`
-    defined in :epkg:`DOT` language
-    with :epkg:`viz.js`.
+    Renders a network in a :epkg:`notebook`
+    with :epkg:`vis.js`.
     """
 
-    def __init__(self, dot, local=False, width="100%", height="100%", divid=None,
+    def __init__(self, js, local=False, width="100%", height="100%", divid=None,
                  style=None, only_html=True, div_class=None, check_urls=True,
-                 lite=True):
+                 class_vis='Netwwork'):
         """
-        @param  dot             (str) dot
+        @param  js              (str) javascript
         @param  local           (bool) use local path to javascript dependencies
         @param  script          (str) script
         @param  width           (str) width
@@ -31,17 +30,19 @@ class RenderJsDot(RenderJS):
         @param  div_class       (str) class of the section ``div`` which will host the results
                                 of the javascript
         @param  check_urls      (bool) by default, check url exists
-        @param  lite            (bool) use lite version
-                                (no `neato <http://www.graphviz.org/pdf/neatoguide.pdf>`_)
+        @param  class_vis       (str) visualization class (*Network*, *Timeline*, ...)
+
+        The script must defined variables *options* and *data* if
+        ``class_vis=='Network'``.
         """
-        script = RenderJsDot._build_script(dot)
-        libs, css = RenderJsDot._get_libs_css(local, lite)
+        script = RenderJsVis._build_script(js)
+        libs, css = RenderJsVis._get_libs_css(local)
         RenderJS.__init__(self, script, width=width, height=height, divid=divid,
                           only_html=only_html, div_class=div_class, check_urls=True,
                           libs=libs, css=css, local=local)
 
     @staticmethod
-    def _get_libs_css(local, lite):
+    def _get_libs_css(local):
         """
         Returns the dependencies.
 
@@ -49,26 +50,33 @@ class RenderJsDot(RenderJS):
         @param      lite        use lite version
         @return                 tuple *(libs, css)*
         """
-        jsvers = "viz-lite.js" if lite else "viz.js"
+        libs = [  # 'vis-timeline-graph2d.min.js',
+            #'vis-network.min.js',
+            #'vis-graph3d.min.js',
+            'vis.min.js']
+        css = ['vis-timeline-graph2d.min.css',
+               'vis-network.min.css',
+               'vis.min.css']
+
         if local:
             this = os.path.dirname(__file__)
-            js = os.path.join(this, '..', 'js', 'vizjs', jsvers)
-            libs = [js]
+            libs = [dict(path=os.path.join(this, '..', 'js',
+                                           'visjs', j), name=j.split('.')[0]) for j in libs]
+            css = [os.path.join(this, '..', 'js', 'visjs', j) for j in css]
         else:
-            libs = ['http://www.xavierdupre.fr/js/vizjs/' + jsvers]
-        css = None
+            libs = [dict(path='http://www.xavierdupre.fr/js/visjs/' +
+                         j, name=j.split('.')[0]) for j in libs]
+            css = ['http://www.xavierdupre.fr/js/visjs/' + j for j in css]
         return libs, css
 
     @staticmethod
-    def _build_script(dot):
+    def _build_script(js):
         """
-        Builds the javascript script based wrapping the
-        :epkg:`DOT` language.
+        Builds the javascript script.
 
-        @param      dot     :epkg:`DOT` language
+        @param      js      javascript
         @return             javascript
         """
-        dot = dot.replace('"', '\\"').replace('\n', '\\n')
-        script = """var svgGraph = Viz("{0}");\ndocument.getElementById('__ID__').innerHTML = svgGraph;""".format(
-            dot)
+        script = js + "\nvar container = document.getElementById('__ID__');" + \
+            "\nvar network = new vis.Network(container, data, options);\n"
         return script

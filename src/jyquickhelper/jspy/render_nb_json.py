@@ -38,9 +38,9 @@ class RenderJSONRaw(object):
         self.height = height
         self.show_to_level = show_to_level
         self.local = local
-        self._copy_local()
+        self._copy_local(local)
 
-    def _copy_local(self):
+    def _copy_local(self, local):
         """
         If *self.local*, copies javascript dependencies in the local folder.
         """
@@ -53,7 +53,8 @@ class RenderJSONRaw(object):
         js = os.path.join(this, '..', 'js', 'renderjson', 'renderjson.js')
         if not os.path.exists(js):
             raise FileNotFoundError("Unable to find '{0}'".format(js))
-        shutil.copy(js, os.getcwd())
+        dest = local if isinstance(local, str) else os.getcwd()
+        shutil.copy(js, dest)
 
     def generate_html(self):
         """

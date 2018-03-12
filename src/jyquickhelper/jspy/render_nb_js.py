@@ -5,6 +5,8 @@
 """
 import sys
 import uuid
+import os
+import shutil
 from IPython.display import display_html, display_javascript
 
 if sys.version_info[0] < 3:
@@ -50,7 +52,8 @@ class RenderJSRaw(object):
     """
 
     def __init__(self, script, width="100%", height="100%", divid=None, css=None,
-                 libs=None, style=None, only_html=False, div_class=None, check_urls=True):
+                 libs=None, style=None, only_html=False, div_class=None, check_urls=True,
+                 local=False):
         """
         @param  script          (str) script
         @param  width           (str) width
@@ -65,12 +68,11 @@ class RenderJSRaw(object):
         @param  div_class       (str) class of the section ``div`` which will host the results
                                 of the javascript
         @param  check_urls      (bool) by default, check url exists
+        @param  local           (bool|False) use local javascript files
         """
         self.script = script
         self.uuid = divid if divid else "M" + \
             str(uuid.uuid4()).replace("-", "")
-        self.libs = libs
-        self.css = css
         if style is None:
             style = ''
             if width is not None and 'width' not in style:
@@ -90,16 +92,58 @@ class RenderJSRaw(object):
         if "__ID__" not in script:
             raise ValueError(
                 "The sript does not contain any string __ID__. It is replaced by the ID value in script:\n{0}".format(script))
-        if check_urls:
-            if css is not None:
-                for c in css:
+        self.local = local
+        self.css, self.libs = self._copy_local(css, libs, local)
+        if check_urls and not local:
+            if self.css is not None:
+                for c in self.css:
                     check_url(c)
-            if libs is not None:
-                for l in libs:
+            if self.libs is not None:
+                for l in self.libs:
                     if isinstance(l, dict):
                         check_url(l['path'])
                     else:
                         check_url(l)
+
+    def _copy_local(self, css, libs, local):
+        """
+        If *self.local*, copies javascript dependencies in the local folder.
+
+        @param      css     list of css
+        @param      libs    list of libraries
+        @param      local   boolean or new location
+        @return             tuple (css, libs)
+        """
+        if not self.local:
+            return css, libs
+        to_copy = []
+        if css:
+            to_copy.extend(css)
+        if libs:
+            for js in libs:
+                if isinstance(js, dict):
+                    to_copy.append(js['path'])
+                else:
+                    to_copy.append(js)
+
+        for js in to_copy:
+            if not os.path.exists(js):
+                raise FileNotFoundError("Unable to find '{0}'".format(js))
+            dest = local if isinstance(local, str) else os.getcwd()
+            shutil.copy(js, dest)
+
+        if css:
+            css = [os.path.split(c)[-1] for c in css]
+        if libs:
+            def proc(d):
+                if isinstance(d, dict):
+                    d = d.copy()
+                    d['path'] = os.path.split(d['path'])[-1]
+                    return d
+                else:
+                    return os.path.split(d)[-1]
+            libs = [proc(c) for c in libs]
+        return css, libs
 
     def generate_html(self):
         """

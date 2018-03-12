@@ -268,3 +268,11 @@ _unittests/run_unittests.py.out
 _doc/sphinxdoc/source/phdoc_static/style_notebook_snippet.css
 dist
 _doc/notebooks/custom_demo.js
+_doc/notebooks/vis*.css
+_doc/notebooks/vis*.js
+_doc/notebooks/viz*.js
+_doc/notebooks/render*.js
+_unittests/test_jspy/renderjson.js
+_unittests/test_jspy/vis*.css
+_unittests/test_jspy/vis*.js
+_unittests/test_jspy/viz*.js
