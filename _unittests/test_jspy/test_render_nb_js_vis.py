@@ -68,6 +68,24 @@ class TestRenderNbJsVis(unittest.TestCase):
       var options = {};
       """
 
+    def test_render_nb_js_vis_dot(self):
+        fLOG(
+            __file__,
+            self._testMethodName,
+            OutputPrint=__name__ == "__main__")
+
+        f = RenderJsVis(dot="digraph{ a -> b; }")
+        assert f
+        if hasattr(f, "_ipython_display_"):
+            f._ipython_display_()
+        else:
+            f._repr_html_()
+
+        f = RenderJsVis(dot="digraph{ a -> b; }", only_html=True)
+        out = f._repr_html_()
+        self.assertIn('var network = new vis.Network(', out)
+        self.assertNotIn('None', out)
+
     def test_render_nb_js_vis(self):
         fLOG(
             __file__,
@@ -125,6 +143,21 @@ class TestRenderNbJsVis(unittest.TestCase):
         out = f._repr_html_()
         self.assertIn('var network = new vis.Network(', out)
         self.assertNotIn('None', out)
+
+    def test_render_nb_js_vis_exc(self):
+        fLOG(
+            __file__,
+            self._testMethodName,
+            OutputPrint=__name__ == "__main__")
+
+        self.assertRaises(ValueError, lambda: RenderJsVis(
+            only_html=True, local=True))
+        self.assertRaises(ValueError, lambda: RenderJsVis(
+            'jj', only_html=True, local=True))
+        self.assertRaises(ValueError, lambda: RenderJsVis(
+            '__ID__', only_html=True, local=True))
+        self.assertRaises(ValueError, lambda: RenderJsVis(
+            '__ID__', only_html=True, local=True, class_vis='r'))
 
 
 if __name__ == "__main__":

@@ -26,6 +26,13 @@ class UrlNotFoundError(Exception):
             self, "Url not found: returned code={0} for '{1}'".format(code, url))
 
 
+class JavascriptScriptError(ValueError):
+    """
+    Raised when the class does not find what it expects.
+    """
+    pass
+
+
 def check_url(url):
     if sys.version_info[0] < 3:
         ret = liburl.urlopen(url)
@@ -90,7 +97,7 @@ class RenderJSRaw(object):
         self.only_html = only_html
         self.div_class = div_class
         if "__ID__" not in script:
-            raise ValueError(
+            raise JavascriptScriptError(
                 "The sript does not contain any string __ID__. It is replaced by the ID value in script:\n{0}".format(script))
         self.local = local
         self.css, self.libs = self._copy_local(css, libs, local)
