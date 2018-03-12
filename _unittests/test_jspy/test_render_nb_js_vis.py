@@ -86,6 +86,26 @@ class TestRenderNbJsVis(unittest.TestCase):
         self.assertIn('var network = new vis.Network(', out)
         self.assertNotIn('None', out)
 
+    def test_render_nb_js_vis_dot_options(self):
+        fLOG(
+            __file__,
+            self._testMethodName,
+            OutputPrint=__name__ == "__main__")
+
+        f = RenderJsVis(dot="digraph{ a -> b; }")
+        assert f
+        if hasattr(f, "_ipython_display_"):
+            f._ipython_display_()
+        else:
+            f._repr_html_()
+
+        f = RenderJsVis(dot="digraph{ a -> b; }",
+                        only_html=True, layout='hierarchical')
+        out = f._repr_html_()
+        self.assertIn('var network = new vis.Network(', out)
+        self.assertIn('var options = {layout:{', out)
+        self.assertNotIn('None', out)
+
     def test_render_nb_js_vis(self):
         fLOG(
             __file__,

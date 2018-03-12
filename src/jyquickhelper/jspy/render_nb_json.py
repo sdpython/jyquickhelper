@@ -12,7 +12,8 @@ from IPython.display import display_html, display_javascript
 
 class RenderJSONRaw(object):
     """
-    Renders :epkg:`JSON` using :epkg:`javascript`.
+    Renders :epkg:`JSON` in a :epkg:`notebook`
+    using :epkg:`renderjson`.
     """
 
     def __init__(self, json_data, width="100%", height="100%", divid=None,

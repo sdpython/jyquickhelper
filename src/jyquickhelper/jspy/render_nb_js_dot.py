@@ -16,7 +16,7 @@ class RenderJsDot(RenderJS):
 
     def __init__(self, dot, local=False, width="100%", height="100%", divid=None,
                  style=None, only_html=True, div_class=None, check_urls=True,
-                 lite=True):
+                 lite=False):
         """
         @param  dot             (str) dot
         @param  local           (bool) use local path to javascript dependencies

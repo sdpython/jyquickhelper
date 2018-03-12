@@ -1,0 +1,18 @@
+
+.. blogpost::
+    :title: Custom javascript does not in jupyter lab
+    :keywords: jupyter lab, notebook
+    :date: 2018-03-12
+    :categories: javascript
+
+    I was surprised to see that the same code is
+    working with a notebook server and not in Jupyter Lab.
+    Here is the reason :
+    `Jupyter Lab extension to support JavaScript output which are disabled in JupyterLab <https://github.com/jupyterlab/jupyterlab/issues/3748>`_,
+    `how to restore script tags in trusted HTML output <https://github.com/jupyterlab/jupyterlab/issues/3118>`_.
+    I did not find any easy to enable javascript back.
+    A couple of direction:
+    `javascriptRendererExtension.ts <https://github.com/twosigma/beakerx/blob/master/js/lab/src/javascriptRendererExtension.ts>`_,
+    `jupyter-renderers <https://github.com/jupyterlab/jupyter-renderers>`_,
+    `vdom <https://github.com/nteract/vdom/blob/master/README.md>`_.
+    Maybe, it will get easier.

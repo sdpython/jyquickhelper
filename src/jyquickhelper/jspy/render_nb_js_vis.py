@@ -22,7 +22,7 @@ class RenderJsVis(RenderJS):
 
     def __init__(self, js=None, local=False, width="100%", height="100%", divid=None,
                  style=None, only_html=True, div_class=None, check_urls=True,
-                 class_vis='Network', dot=None):
+                 class_vis='Network', dot=None, layout=None, direction='UD'):
         """
         @param  js              (str) javascript
         @param  local           (bool) use local path to javascript dependencies
@@ -39,11 +39,15 @@ class RenderJsVis(RenderJS):
         @param  check_urls      (bool) by default, check url exists
         @param  class_vis       (str) visualization class (*Network*, *Timeline*, ...)
         @param  dot             (str) either *js* or *dot* must be specified.
+        @param  layout          (str) layout see `layout <http://visjs.org/docs/network/layout.html>`_
+        @param  direction       (str) if ``layout=='hiearchical'``, a string among
+                                `'UD'`, `'DU'`, `'LR'`, `'RL'`.
 
         The script must defined variables *options* and *data* if
         ``class_vis=='Network'``.
         """
-        script = RenderJsVis._build_script(js, dot)
+        script = RenderJsVis._build_script(
+            js, dot, layout=layout, direction=direction)
         libs, css = RenderJsVis._get_libs_css(local, class_vis)
         RenderJS.__init__(self, script, width=width, height=height, divid=divid,
                           only_html=only_html, div_class=div_class, check_urls=True,
@@ -84,11 +88,13 @@ class RenderJsVis(RenderJS):
         return libs, css
 
     @staticmethod
-    def _build_script(js, dot):
+    def _build_script(js, dot, **options):
         """
         Builds the javascript script.
 
         @param      js      javascript
+        @param      dot     dot scripts
+        @param      options graph options
         @return             javascript
         """
         if js is None:
@@ -107,6 +113,16 @@ class RenderJsVis(RenderJS):
                 raise ValueError("js or dot must be specified not both")
             jsadd = js
 
+        if options or 'var options =' not in jsadd:
+            opts = {}
+            if 'layout' in options and options['layout'] is not None:
+                opts['layout'] = {options['layout']: {'direction': options.get('direction', 'UD'),
+                                                      'sortMethod': "directed"}}
+            else:
+                opts = {k: v for k, v in options.items() if v is not None}
+            st = 'var options = {0};'.format(RenderJsVis._options2js(opts))
+            jsadd += "\n" + st + "\n"
+
         checks = ['var data =', 'var options =']
         for ch in checks:
             if ch not in jsadd:
@@ -115,3 +131,21 @@ class RenderJsVis(RenderJS):
         script = jsadd + "\nvar container = document.getElementById('__ID__');" + \
             "\nvar network = new vis.Network(container, data, options);\n"
         return script
+
+    def _options2js(data):
+        """
+        Converts *data* into a string.
+        """
+        rows = ['{']
+        for k, v in data.items():
+            if k is None:
+                raise ValueError("k cannot be None")
+            rows.append(k)
+            rows.append(':')
+            if isinstance(v, dict):
+                rows.append(RenderJsVis._options2js(v))
+            else:
+                rows.append('"{0}"'.format(v))
+            rows.append(', ')
+        rows.append('}')
+        return "".join(rows)

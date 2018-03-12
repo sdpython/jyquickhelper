@@ -16,3 +16,6 @@ visualizing a specific object or format.
 
 .. autosignature:: jyquickhelper.jspy.render_nb_js_dot.RenderJsDot
     :members:
+
+.. autosignature:: jyquickhelper.jspy.render_nb_js_vis.RenderJsVis
+    :members:
