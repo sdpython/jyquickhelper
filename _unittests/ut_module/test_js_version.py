@@ -49,6 +49,8 @@ from src.jyquickhelper.js.vizjs import version as vjz
 from src.jyquickhelper.js.visjs import version as vjs2
 from src.jyquickhelper.js.svgpanzoom import version as vspz
 from src.jyquickhelper.js.svg import version as vsvg
+from src.jyquickhelper.js.cytoscape import version as vcyt
+from src.jyquickhelper.js.pig import version as vpig
 
 
 class TestJsVersion(unittest.TestCase):
@@ -59,9 +61,24 @@ class TestJsVersion(unittest.TestCase):
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
-        for f in [vc3, vd3, vexe, vraph, vtr, vc, vjs, vme, vjz, vspz, vsvg, vjs2]:
+        root = os.path.join(os.path.dirname(src.__file__), "jyquickhelper")
+        for i, f in enumerate([vc3, vd3, vexe, vraph, vtr, vc, vjs,
+                               vme, vjz, vspz, vsvg, vjs2, vcyt, vpig]):
             spl = f().split('.')
             self.assertGreater(len(spl), 1)
+            name = f.__module__.split('jyquickhelper')[-1].strip('.')
+            fold = os.path.join(root, *name.split("."))
+            js = [_ for _ in os.listdir(
+                fold) if os.path.splitext(_)[-1] == '.js']
+            if len(js) == 0:
+                raise FileNotFoundError(
+                    "({2}) No js found for '{0}' in '{1}'.".format(name, fold, i))
+            if 'custom' in name:
+                continue
+            lic = [_ for _ in os.listdir(fold) if 'LICENSE' in _]
+            if len(lic) == 0:
+                raise FileNotFoundError(
+                    "({2}) No license found for '{0}' in '{1}'.".format(name, fold, i))
 
 
 if __name__ == "__main__":
