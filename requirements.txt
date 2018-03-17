@@ -1,4 +1,5 @@
 coverage
+networkx
 pyquickhelper>=1.7.2448
 sphinxjp.themes.sphinxjp
 wheel
