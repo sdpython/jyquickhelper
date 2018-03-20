@@ -82,6 +82,7 @@ add_notebook_menu_js = """
                         a += "    ";
                     return a;
                 }
+                // look up into all sections and builds an automated menu //
                 var update_menu_string = function(begin, lfirst, llast, sformat, send, keep_item, begin_format, end_format) {
                     var anchors = document.getElementsByClassName("section");
                     if (anchors.length == 0) {

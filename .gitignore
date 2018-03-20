@@ -276,3 +276,5 @@ _unittests/test_jspy/renderjson.js
 _unittests/test_jspy/vis*.css
 _unittests/test_jspy/vis*.js
 _unittests/test_jspy/viz*.js
+_doc/sphinxdoc/source/nbcov*.png
+_doc/sphinxdoc/source/HISTORY.rst
