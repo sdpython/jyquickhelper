@@ -21,7 +21,6 @@ KEYWORDS = project_var_name + ', Xavier Dupré'
 DESCRIPTION = """Helpers for Jupyter notebooks: automated menu, JSON visualizer, plug javascript"""
 CLASSIFIERS = [
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 2.7',
     'Intended Audience :: Developers',
     'Topic :: Scientific/Engineering',
     'Topic :: Education',

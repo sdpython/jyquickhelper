@@ -6,47 +6,6 @@
 from IPython.display import Javascript, HTML
 
 
-def store_notebook_path(name="theNotebook"):
-    """
-    Returns :epkg:`javascript` object to execute in order to store
-    the notebook file name into a variable
-    available from the notebook.
-
-    @param      name        name of the variable
-    @return                 Javascript object
-
-    The function uses the following code to get the notebook path::
-
-        var kernel = IPython.notebook.kernel;
-        var body = document.body,
-        attribs = body.attributes;
-        var command = "theNotebook = os.path.join(" + "r'"+attribs['data-project'].value+"'," +
-                      "r'"+attribs['data-notebook-path'].value+"'," + "r'"+attribs['data-notebook-name'].value+"')";
-        kernel.execute(command);
-
-    Example::
-
-        from pyquickhelper.ipythonhelper import store_notebook_path
-        store_notebook_path()
-
-    In another cell::
-
-        theNotebook
-
-    See notebook :ref:`exempleoffixmenurst`.
-    Try function @see fn set_notebook_name_theNotebook if this one does not work.
-    """
-    js = """
-        var kernel = IPython.notebook.kernel;
-        var body = document.body,
-        attribs = body.attributes;
-        var command = "{0} = os.path.join(" + "r'"+attribs['data-project'].value+"'," +
-                      "r'"+attribs['data-notebook-path'].value+"'," + "r'"+attribs['data-notebook-name'].value+"')";
-        kernel.execute(command);
-        """.replace("        ", "").format(name)
-    return Javascript(js)
-
-
 def set_notebook_name_theNotebook(name="theNotebook"):
     """
     This function must be called from the notebook

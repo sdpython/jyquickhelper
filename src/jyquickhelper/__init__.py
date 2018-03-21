@@ -51,5 +51,5 @@ def _setup_hook(use_print=False):
         print("Success: _setup_hook")
 
 
-from .helper_in_notebook import add_notebook_menu, store_notebook_path
+from .helper_in_notebook import add_notebook_menu, set_notebook_name_theNotebook
 from .jspy import JSONJS, RenderJS, RenderJsDot, RenderJsVis
