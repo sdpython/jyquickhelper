@@ -37,7 +37,7 @@ except ImportError:
     import pyquickhelper as skip_
 
 from pyquickhelper.loghelper import fLOG
-from src.jyquickhelper import store_notebook_path, add_notebook_menu
+from src.jyquickhelper import set_notebook_name_theNotebook, add_notebook_menu
 
 
 class TestHelperInNotebook(unittest.TestCase):
@@ -47,7 +47,7 @@ class TestHelperInNotebook(unittest.TestCase):
             __file__,
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
-        r = store_notebook_path()
+        r = set_notebook_name_theNotebook(display=False)
         assert r is not None
 
     def test_add_notebook_menu(self):

@@ -6,7 +6,7 @@
 from IPython.display import Javascript, HTML
 
 
-def set_notebook_name_theNotebook(name="theNotebook"):
+def set_notebook_name_theNotebook(name="theNotebook", display=True):
     """
     This function must be called from the notebook
     you want to know the name. It relies on
@@ -14,6 +14,9 @@ def set_notebook_name_theNotebook(name="theNotebook"):
     the variable ``theNotebook`` with the notebook name.
 
     @param      name        name of the variable to create
+    @param      display     calls `display <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.display>`_
+                            or returns a javascript object
+    @return                 None or `Javascript <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Javascript>`_
 
     This solution was found at
     `How to I get the current IPython Notebook name <http://stackoverflow.com/questions/12544056/how-to-i-get-the-current-ipython-notebook-name>`_.
@@ -29,8 +32,12 @@ def set_notebook_name_theNotebook(name="theNotebook"):
               kernel.execute(command);""".replace("              ", "").replace("__NAME__", name)
 
     def get_name():
-        from IPython.core.display import Javascript, display
-        display(Javascript(code))
+        from IPython.core.display import Javascript, display as jdisp
+        j = Javascript(code)
+        if display:
+            jdisp(j)
+        else:
+            return j
     return get_name()
 
 
