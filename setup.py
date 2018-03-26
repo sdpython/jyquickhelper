@@ -54,7 +54,7 @@ def is_local():
                   "copy27", "copy_dist", "local_pypi", "notebook", "publish", "publish_doc",
                   "register", "unittests", "unittests_LONG", "unittests_SKIP", "unittests_GUI",
                   "run27", "sdist", "setupdep", "test_local_pypi", "upload_docs", "setup_hook",
-                  "copy_sphinx", "write_version", "lab"}:
+                  "copy_sphinx", "write_version", "lab", "history"}:
         if cname in sys.argv:
             try:
                 import_pyquickhelper()
@@ -173,7 +173,7 @@ if is_local():
         additional_local_path=["pyquickhelper",
                                "pymyinstall", "jyquickhelper"],
         requirements=["pyquickhelper", "pymyinstall", "jyquickhelper"],
-        layout=["html"],
+        layout=["html"], github_owner="sdpython",
         add_htmlhelp=sys.platform.startswith("win"),
         coverage_options=dict(omit=["*exclude*.py"]),
         fLOG=logging_function, covtoken=("24e81424-08ba-4ca7-be23-66c12926565f ", "'_UT_36_std' in outfile"))
