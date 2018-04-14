@@ -64,8 +64,8 @@ class RenderJsVis(RenderJS):
         """
         if class_vis == 'Network':
             libs = [  # 'vis-timeline-graph2d.min.js',
-                #'vis-network.min.js',
-                #'vis-graph3d.min.js',
+                # 'vis-network.min.js',
+                # 'vis-graph3d.min.js',
                 'vis.min.js'
             ]
             css = [  # 'vis-timeline-graph2d.min.css',
