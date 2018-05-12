@@ -4,6 +4,9 @@
 @brief Module *jyquickhelper*.
 Helpers for notebooks.
 """
+from .helper_in_notebook import add_notebook_menu, set_notebook_name_theNotebook
+from .jspy import JSONJS, RenderJS, RenderJsDot, RenderJsVis
+
 
 __version__ = "0.3"
 __author__ = "Xavier Dupré"
@@ -49,7 +52,3 @@ def _setup_hook(use_print=False):
     # any others things before unit tests are started
     if use_print:
         print("Success: _setup_hook")
-
-
-from .helper_in_notebook import add_notebook_menu, set_notebook_name_theNotebook
-from .jspy import JSONJS, RenderJS, RenderJsDot, RenderJsVis

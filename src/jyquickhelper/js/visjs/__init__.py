@@ -7,4 +7,5 @@ The script was obtained from the
 
 
 def version():
+    "version"
     return "4.21.1"

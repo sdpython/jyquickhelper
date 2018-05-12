@@ -34,6 +34,7 @@ class JavascriptScriptError(ValueError):
 
 
 def check_url(url):
+    "Checks urls."
     if sys.version_info[0] < 3:
         ret = liburl.urlopen(url)
         if ret.code == 200:
@@ -69,8 +70,12 @@ class RenderJSRaw(object):
         @param  divid           (str|None) id of the div
         @param  css             (list) list of css
         @param  libs            (list) list of dependencies
-        @param  only_html       (bool) use only function `display_html <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html?highlight=display_html#IPython.display.display_html>`_
-                                and not `display_javascript <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html?highlight=display_html#IPython.display.display_javascript>`_ to add
+        @param  only_html       (bool) use only function
+                                `display_html <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html?
+                                highlight=display_html#IPython.display.display_html>`_
+                                and not `display_javascript
+                                <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html?
+                                highlight=display_html#IPython.display.display_javascript>`_ to add
                                 javascript to the page.
         @param  div_class       (str) class of the section ``div`` which will host the results
                                 of the javascript
@@ -143,6 +148,7 @@ class RenderJSRaw(object):
             css = [os.path.split(c)[-1] for c in css]
         if libs:
             def proc(d):
+                "proc"
                 if isinstance(d, dict):
                     d = d.copy()
                     d['path'] = os.path.split(d['path'])[-1]
@@ -227,6 +233,7 @@ class RenderJSRaw(object):
                 config.append("shim:{")
 
                 def vd(d):
+                    "vd"
                     rows = []
                     for k, v in sorted(d.items()):
                         rows.append("'{0}':{1}".format(

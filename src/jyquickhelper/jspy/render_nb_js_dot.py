@@ -25,8 +25,11 @@ class RenderJsDot(RenderJS):
         @param  height          (str) height
         @param  style           (str) style (added in ``<style>...</style>``)
         @param  divid           (str|None) id of the div
-        @param  only_html       (bool) use only function `display_html <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html?highlight=display_html#IPython.display.display_html>`_
-                                and not `display_javascript <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html?highlight=display_html#IPython.display.display_javascript>`_ to add
+        @param  only_html       (bool) use only function `display_html <http://ipython.readthedocs.io/en/stable/
+                                api/generated/IPython.display.html?
+                                highlight=display_html#IPython.display.display_html>`_
+                                and not `display_javascript <http://ipython.readthedocs.io/en/stable/api/generated/
+                                IPython.display.html?highlight=display_html#IPython.display.display_javascript>`_ to add
                                 javascript to the page.
         @param  div_class       (str) class of the section ``div`` which will host the results
                                 of the javascript

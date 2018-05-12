@@ -4,6 +4,7 @@
 @brief Functions to call from the notebook
 """
 from IPython.display import Javascript, HTML
+from IPython.core.display import display as jdisp
 
 
 def set_notebook_name_theNotebook(name="theNotebook", display=True):
@@ -14,12 +15,15 @@ def set_notebook_name_theNotebook(name="theNotebook", display=True):
     the variable ``theNotebook`` with the notebook name.
 
     @param      name        name of the variable to create
-    @param      display     calls `display <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.display>`_
+    @param      display     calls `display <http://ipython.readthedocs.io/en/stable/api/generated/
+                            IPython.display.html#IPython.display.display>`_
                             or returns a javascript object
-    @return                 None or `Javascript <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Javascript>`_
+    @return                 None or `Javascript <http://ipython.readthedocs.io/en/stable/api/generated/
+                            IPython.display.html#IPython.display.Javascript>`_
 
     This solution was found at
-    `How to I get the current IPython Notebook name <http://stackoverflow.com/questions/12544056/how-to-i-get-the-current-ipython-notebook-name>`_.
+    `How to I get the current IPython Notebook name
+    <http://stackoverflow.com/questions/12544056/how-to-i-get-the-current-ipython-notebook-name>`_.
 
     The function can be called in a cell.
     The variable ``theNotebook`` will be available in the next cells.
@@ -32,16 +36,16 @@ def set_notebook_name_theNotebook(name="theNotebook", display=True):
               kernel.execute(command);""".replace("              ", "").replace("__NAME__", name)
 
     def get_name():
-        from IPython.core.display import Javascript, display as jdisp
+        "return name"
         j = Javascript(code)
         if display:
             jdisp(j)
-        else:
-            return j
+        return j
     return get_name()
 
 
-add_notebook_menu_js = """
+def _add_notebook_menu_js():
+    return """
                 function repeat_indent_string(n){
                     var a = "" ;
                     for ( ; n > 0 ; --n)
@@ -197,7 +201,7 @@ def add_notebook_menu(menu_id="my_id_menu_nb", raw=False, format="html", header=
     html = '<div id="{0}">run previous cell, wait for 2 seconds</div>'.format(
         menu_id)
 
-    global add_notebook_menu_js
+    add_notebook_menu_js = _add_notebook_menu_js()
     js = add_notebook_menu_js.replace("                ", "") \
                              .replace("__MENUID__", menu_id) \
                              .replace("__FIRST__", str(first_level)) \

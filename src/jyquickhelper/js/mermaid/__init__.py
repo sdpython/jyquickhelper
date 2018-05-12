@@ -7,4 +7,5 @@ The script was obtained from the docs folder inside the
 
 
 def version():
+    "version"
     return "7.0.0"

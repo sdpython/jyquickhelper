@@ -98,7 +98,8 @@ class RenderJSON(RenderJSONRaw):
 
 def JSONJS(data, only_html=True, show_to_level=None, local=False):
     """
-    Inspired from `Pretty JSON Formatting in IPython Notebook <http://stackoverflow.com/questions/18873066/pretty-json-formatting-in-ipython-notebook>`_.
+    Inspired from `Pretty JSON Formatting in IPython Notebook
+    <http://stackoverflow.com/questions/18873066/pretty-json-formatting-in-ipython-notebook>`_.
 
     @param      data            dictionary or json string
     @param      show_to_level   show first level

@@ -5,4 +5,5 @@
 
 
 def version():
+    "version"
     return "2.7.0"
