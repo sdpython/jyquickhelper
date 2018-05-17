@@ -2,24 +2,13 @@
 import sys
 import os
 import better
+from pyquickhelper.helpgen.default_conf import set_sphinx_variables, get_default_stylesheet
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.split(__file__)[0])))
-sys.path.insert(
-    0,
-    os.path.abspath(
-        os.path.join(
-            os.path.split(__file__)[0],
-            "..",
-            "..",
-            "..",
-            "..",
-            "pyquickhelper",
-            "src")))
 
 local_template = os.path.join(os.path.abspath(
     os.path.dirname(__file__)), "phdoc_templates")
 
-from pyquickhelper.helpgen.default_conf import set_sphinx_variables, get_default_stylesheet
 set_sphinx_variables(__file__, "jyquickhelper", "Xavier Dupré", 2018,
                      "better", [better.better_theme_path],
                      locals(), extlinks=dict(
