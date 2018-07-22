@@ -1,6 +1,6 @@
 coverage
 networkx
+pillow
 pyquickhelper>=1.8
 sphinx-better-theme
-sphinxjp.themes.sphinxjp
 wheel
