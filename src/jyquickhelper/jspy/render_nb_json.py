@@ -10,7 +10,7 @@ import json
 from IPython.display import display_html, display_javascript
 
 
-class RenderJSONRaw(object):
+class RenderJSONRaw:
     """
     Renders :epkg:`JSON` in a :epkg:`notebook`
     using :epkg:`renderjson`.

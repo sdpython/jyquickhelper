@@ -54,7 +54,7 @@ def check_url(url):
             raise Exception("Issue with url '{0}'".format(url)) from e
 
 
-class RenderJSRaw(object):
+class RenderJSRaw:
     """
     Adds :epkg:`javascript` into a noteboook.
     """
