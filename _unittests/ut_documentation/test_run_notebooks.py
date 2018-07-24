@@ -46,8 +46,10 @@ class TestRunNotebooksPython(unittest.TestCase):
         for i, f in enumerate(keepnote):
             fLOG(i, os.path.split(f)[-1])
 
-        # run the notebooks
-        res = execute_notebook_list(temp, keepnote, fLOG=fLOG)
+        addpaths = [os.path.normpath(os.path.join(
+            os.path.abspath(os.path.dirname(__file__)), "..", "..", "src"))]
+
+        res = execute_notebook_list(temp, keepnote, fLOG=fLOG, additional_path=addpaths)
         execute_notebook_list_finalize_ut(
             res, fLOG=fLOG, dump=src.jyquickhelper)
 
