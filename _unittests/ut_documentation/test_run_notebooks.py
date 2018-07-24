@@ -41,10 +41,12 @@ class TestRunNotebooksPython(unittest.TestCase):
             os.path.abspath(os.path.dirname(__file__)), "..", "..", "_doc", "notebooks"))
         keepnote = []
         for f in os.listdir(fnb):
-            if os.path.splitext(f)[-1] == ".ipynb" and "_long" not in f and "custom" not in f:
+            if os.path.splitext(f)[-1] == ".ipynb" and "_long" not in f and \
+                "custom" not in f and "local" not in f and "panzoom" not in f and \
+                "visjs" not in f and "svg" not in f:
                 keepnote.append(os.path.join(fnb, f))
         for i, f in enumerate(keepnote):
-            fLOG(i, os.path.split(f)[-1])
+            fLOG(i + 1, os.path.split(f)[-1])
 
         addpaths = [os.path.normpath(os.path.join(
             os.path.abspath(os.path.dirname(__file__)), "..", "..", "src"))]

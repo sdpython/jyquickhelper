@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@brief      test log(time=15s)
+@brief      test log(time=7s)
 """
 
 import sys
@@ -26,7 +26,7 @@ except ImportError:
 import src.jyquickhelper
 
 
-class TestRunNotebooksPythonCustom(unittest.TestCase):
+class TestRunNotebooksPythonSvg(unittest.TestCase):
 
     @unittest.skipIf(sys.version_info[0] == 2, "notebook only working with python 3")
     def test_run_notebook(self):
@@ -35,14 +35,14 @@ class TestRunNotebooksPythonCustom(unittest.TestCase):
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
-        temp = get_temp_folder(__file__, "temp_run_notebooks_custom")
+        temp = get_temp_folder(__file__, "temp_run_notebooks_svg")
 
         fnb = os.path.normpath(os.path.join(
             os.path.abspath(os.path.dirname(__file__)), "..", "..", "_doc", "notebooks"))
         keepnote = []
         for f in os.listdir(fnb):
-            if os.path.splitext(f)[-1] == ".ipynb" and "_long" not in f and \
-               ("custom" in f or "local" in f):
+            if os.path.splitext(f)[-1] == ".ipynb" and "svg" in f and \
+                "panzoom" not in f:
                 keepnote.append(os.path.join(fnb, f))
         for i, f in enumerate(keepnote):
             fLOG(i + 1, os.path.split(f)[-1])
@@ -50,7 +50,6 @@ class TestRunNotebooksPythonCustom(unittest.TestCase):
         addpaths = [os.path.normpath(os.path.join(
             os.path.abspath(os.path.dirname(__file__)), "..", "..", "src"))]
 
-        # run the notebooks
         res = execute_notebook_list(temp, keepnote, fLOG=fLOG, additional_path=addpaths)
         execute_notebook_list_finalize_ut(
             res, fLOG=fLOG, dump=src.jyquickhelper)
