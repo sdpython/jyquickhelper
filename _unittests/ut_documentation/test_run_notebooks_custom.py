@@ -26,7 +26,7 @@ except ImportError:
 import src.jyquickhelper
 
 
-class TestRunNotebooksPython(unittest.TestCase):
+class TestRunNotebooksPythonCustom(unittest.TestCase):
 
     @unittest.skipIf(sys.version_info[0] == 2, "notebook only working with python 3")
     def test_run_notebook(self):
@@ -35,13 +35,13 @@ class TestRunNotebooksPython(unittest.TestCase):
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
-        temp = get_temp_folder(__file__, "temp_run_notebooks")
+        temp = get_temp_folder(__file__, "temp_run_notebooks_custom")
 
         fnb = os.path.normpath(os.path.join(
             os.path.abspath(os.path.dirname(__file__)), "..", "..", "_doc", "notebooks"))
         keepnote = []
         for f in os.listdir(fnb):
-            if os.path.splitext(f)[-1] == ".ipynb" and "_long" not in f and "custom" not in f:
+            if os.path.splitext(f)[-1] == ".ipynb" and "_long" not in f and "custom" in f:
                 keepnote.append(os.path.join(fnb, f))
         for i, f in enumerate(keepnote):
             fLOG(i, os.path.split(f)[-1])
