@@ -43,7 +43,7 @@ class TestRunNotebooksPythonCustoJs(unittest.TestCase):
         for f in os.listdir(fnb):
             if os.path.splitext(f)[-1] == ".ipynb" and "_long" not in f and \
                 "js" in f and \
-                ("custom" in f or "local" in f):
+                    ("custom" in f or "local" in f):
                 keepnote.append(os.path.join(fnb, f))
         for i, f in enumerate(keepnote):
             fLOG(i + 1, os.path.split(f)[-1])
