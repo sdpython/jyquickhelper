@@ -43,7 +43,7 @@ class TestRunNotebooksPython(unittest.TestCase):
         for f in os.listdir(fnb):
             if os.path.splitext(f)[-1] == ".ipynb" and "_long" not in f and \
                 "custom" not in f and "local" not in f and "panzoom" not in f and \
-                "visjs" not in f and "svg" not in f:
+                    "visjs" not in f and "svg" not in f:
                 keepnote.append(os.path.join(fnb, f))
         for i, f in enumerate(keepnote):
             fLOG(i + 1, os.path.split(f)[-1])
@@ -51,7 +51,8 @@ class TestRunNotebooksPython(unittest.TestCase):
         addpaths = [os.path.normpath(os.path.join(
             os.path.abspath(os.path.dirname(__file__)), "..", "..", "src"))]
 
-        res = execute_notebook_list(temp, keepnote, fLOG=fLOG, additional_path=addpaths)
+        res = execute_notebook_list(
+            temp, keepnote, fLOG=fLOG, additional_path=addpaths)
         execute_notebook_list_finalize_ut(
             res, fLOG=fLOG, dump=src.jyquickhelper)
 

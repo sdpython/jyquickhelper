@@ -42,7 +42,7 @@ class TestRunNotebooksPythonSvg(unittest.TestCase):
         keepnote = []
         for f in os.listdir(fnb):
             if os.path.splitext(f)[-1] == ".ipynb" and "svg" in f and \
-                "panzoom" not in f:
+                    "panzoom" not in f:
                 keepnote.append(os.path.join(fnb, f))
         for i, f in enumerate(keepnote):
             fLOG(i + 1, os.path.split(f)[-1])
@@ -50,7 +50,8 @@ class TestRunNotebooksPythonSvg(unittest.TestCase):
         addpaths = [os.path.normpath(os.path.join(
             os.path.abspath(os.path.dirname(__file__)), "..", "..", "src"))]
 
-        res = execute_notebook_list(temp, keepnote, fLOG=fLOG, additional_path=addpaths)
+        res = execute_notebook_list(
+            temp, keepnote, fLOG=fLOG, additional_path=addpaths)
         execute_notebook_list_finalize_ut(
             res, fLOG=fLOG, dump=src.jyquickhelper)
 

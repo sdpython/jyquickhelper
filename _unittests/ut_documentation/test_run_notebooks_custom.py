@@ -51,7 +51,8 @@ class TestRunNotebooksPythonCustom(unittest.TestCase):
             os.path.abspath(os.path.dirname(__file__)), "..", "..", "src"))]
 
         # run the notebooks
-        res = execute_notebook_list(temp, keepnote, fLOG=fLOG, additional_path=addpaths)
+        res = execute_notebook_list(
+            temp, keepnote, fLOG=fLOG, additional_path=addpaths)
         execute_notebook_list_finalize_ut(
             res, fLOG=fLOG, dump=src.jyquickhelper)
 
