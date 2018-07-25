@@ -7,7 +7,7 @@ import sys
 import os
 import unittest
 from pyquickhelper.loghelper import fLOG
-from pyquickhelper.pycode import get_temp_folder
+from pyquickhelper.pycode import get_temp_folder, skipif_appveyor
 from pyquickhelper.ipythonhelper import execute_notebook_list, execute_notebook_list_finalize_ut
 
 try:
@@ -29,6 +29,7 @@ import src.jyquickhelper
 class TestRunNotebooksPythonVisjs(unittest.TestCase):
 
     @unittest.skipIf(sys.version_info[0] == 2, "notebook only working with python 3")
+    @skipif_appveyor("Fails on appveyor")
     def test_run_notebook(self):
         fLOG(
             __file__,
