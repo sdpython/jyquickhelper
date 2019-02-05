@@ -35,6 +35,7 @@ class TestCodeStyle(ExtTestCase):
         check_pep8(src_, fLOG=fLOG,
                    skip=["Unable to import 'urllib2'",
                          "Redefining built-in 'format'",
+                         "R1720",
                          ])
 
     def test_style_test(self):
@@ -52,6 +53,7 @@ class TestCodeStyle(ExtTestCase):
                          "Unused import src",
                          "Instance of 'RenderJsVis' has no '_ipython_display_'",
                          "Instance of 'RenderJsDot' has no '_ipython_display_'",
+                         "R1720",
                          ])
 
 
