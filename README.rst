@@ -1,9 +1,4 @@
 
-.. _l-README:
-
-README
-======
-
 .. image:: https://travis-ci.org/sdpython/jyquickhelper.svg?branch=master
     :target: https://travis-ci.org/sdpython/jyquickhelper
     :alt: Build status
@@ -41,13 +36,10 @@ README
     :target: http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/all_notebooks_coverage.html
     :alt: Notebook Coverage
 
-**Links:**
+.. _l-README:
 
-* `GitHub/jyquickhelper <https://github.com/sdpython/jyquickhelper/>`_
-* `documentation <http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/index.html>`_
-* `Blog <http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/blog/main_0000.html#ap-main-0>`_
-
-**jyquickhelper**
+jyquickhelper
+=============
 
 Helpers for Jupyter notebooks.
 Example to run from a notebook:
@@ -84,3 +76,9 @@ Or visualizing JSON:
     JSONJS(dict(name="xavier", city="Paris"), html_only=True, show_to_level=3)
 
 See `nb_json.ipynb <http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/notebooks/nb_json.html>`_.
+
+**Links:**
+
+* `GitHub/jyquickhelper <https://github.com/sdpython/jyquickhelper/>`_
+* `documentation <http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/index.html>`_
+* `Blog <http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/blog/main_0000.html#ap-main-0>`_
