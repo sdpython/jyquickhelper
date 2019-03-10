@@ -42,7 +42,8 @@ jyquickhelper
     :target: http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/all_notebooks_coverage.html
     :alt: Notebook Coverage
 
-Helpers for Jupyter notebooks.
+Helpers for Jupyter notebooks, implements javascript additions
+such a menu, wraps a json viewer, a graphviz viewer.
 
 .. toctree::
     :maxdepth: 1
