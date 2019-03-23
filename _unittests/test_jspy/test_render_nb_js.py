@@ -1,36 +1,13 @@
 """
 @brief      test log(time=2s)
 """
-
-import sys
-import os
 import unittest
-
-try:
-    from io import StringIO
-    from contextlib import redirect_stdout
-    testoutput = True
-except ImportError:
-    testoutput = False
-
+from io import StringIO
+from contextlib import redirect_stdout
 from pyquickhelper.loghelper import fLOG
 from pyquickhelper.pycode import skipif_circleci
-
-try:
-    import src
-except ImportError:
-    path = os.path.normpath(
-        os.path.abspath(
-            os.path.join(
-                os.path.split(__file__)[0],
-                "..",
-                "..")))
-    if path not in sys.path:
-        sys.path.append(path)
-    import src
-
-from src.jyquickhelper import RenderJS
-from src.jyquickhelper.jspy.render_nb_js import RenderJSObj
+from jyquickhelper import RenderJS
+from jyquickhelper.jspy.render_nb_js import RenderJSObj
 
 
 class TestRenderNbJs(unittest.TestCase):
@@ -42,6 +19,7 @@ class TestRenderNbJs(unittest.TestCase):
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
+        testoutput = True
         try:
             f = RenderJSObj("", css=["_css"], libs=["_libs"])
         except ValueError:

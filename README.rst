@@ -28,10 +28,6 @@
     :alt: GitHub Issues
     :target: https://github.com/sdpython/jyquickhelper/issues
 
-.. image:: https://badge.waffle.io/sdpython/jyquickhelper.png?label=ready&title=Ready
-    :alt: Waffle
-    :target: https://waffle.io/jyquickhelper/jyquickhelper
-
 .. image:: http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/_images/nbcov.png
     :target: http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/all_notebooks_coverage.html
     :alt: Notebook Coverage

@@ -1,41 +1,24 @@
 """
 @brief      test log(time=0s)
 """
-
-import sys
 import os
 import unittest
 from pyquickhelper.loghelper import fLOG
-
-
-try:
-    import src
-except ImportError:
-    path = os.path.normpath(
-        os.path.abspath(
-            os.path.join(
-                os.path.split(__file__)[0],
-                "..",
-                "..")))
-    if path not in sys.path:
-        sys.path.append(path)
-    import src
-
-
-from src.jyquickhelper.js.c3 import version as vc3
-from src.jyquickhelper.js.d3 import version as vd3
-from src.jyquickhelper.js.eve import version as vexe
-from src.jyquickhelper.js.raphael import version as vraph
-from src.jyquickhelper.js.treant import version as vtr
-from src.jyquickhelper.js.custom import version as vc
-from src.jyquickhelper.js.renderjson import version as vjs
-from src.jyquickhelper.js.mermaid import version as vme
-from src.jyquickhelper.js.vizjs import version as vjz
-from src.jyquickhelper.js.visjs import version as vjs2
-from src.jyquickhelper.js.svgpanzoom import version as vspz
-from src.jyquickhelper.js.svg import version as vsvg
-from src.jyquickhelper.js.cytoscape import version as vcyt
-from src.jyquickhelper.js.pig import version as vpig
+import jyquickhelper
+from jyquickhelper.js.c3 import version as vc3
+from jyquickhelper.js.d3 import version as vd3
+from jyquickhelper.js.eve import version as vexe
+from jyquickhelper.js.raphael import version as vraph
+from jyquickhelper.js.treant import version as vtr
+from jyquickhelper.js.custom import version as vc
+from jyquickhelper.js.renderjson import version as vjs
+from jyquickhelper.js.mermaid import version as vme
+from jyquickhelper.js.vizjs import version as vjz
+from jyquickhelper.js.visjs import version as vjs2
+from jyquickhelper.js.svgpanzoom import version as vspz
+from jyquickhelper.js.svg import version as vsvg
+from jyquickhelper.js.cytoscape import version as vcyt
+from jyquickhelper.js.pig import version as vpig
 
 
 class TestJsVersion(unittest.TestCase):
@@ -46,7 +29,7 @@ class TestJsVersion(unittest.TestCase):
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
-        root = os.path.join(os.path.dirname(src.__file__), "jyquickhelper")
+        root = os.path.dirname(jyquickhelper.__file__)
         for i, f in enumerate([vc3, vd3, vexe, vraph, vtr, vc, vjs,
                                vme, vjz, vspz, vsvg, vjs2, vcyt, vpig]):
             spl = f().split('.')
