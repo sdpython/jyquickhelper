@@ -26,5 +26,6 @@ install:
   - pip install pyquickhelper --no-deps
   # - pip install hg+http://bitbucket.org/pygame/pygame
   - pip uninstall -y -q jyquickhelper
+  - export PYTHONPATH=src
 script:
   - python setup.py unittests
