@@ -1,0 +1,16 @@
+
+.. blogpost::
+    :title: Binder and javascript
+    :keywords: jupyter, notebook, binder, javascript
+    :date: 2019-07-17
+    :categories: javascript
+
+    I'm not an expect in javascript and I usually do not look
+    why my script does not work for a very long time
+    if the first try is not successfull. I found
+    :class:`RenderJsDot <jyquickhelper.jspy.render_nb_js_dot.RenderJsDot>`
+    quite useful to display :epkg:`graphviz` graph in a notebook
+    but for some reason, on Binder, the option ``local=True``
+    must be used to make it work.
+    You can check what works and what does not on
+    `binder <https://mybinder.org/v2/gh/sdpython/jyquickhelper/master?filepath=_doc%2Fnotebooks>`_.

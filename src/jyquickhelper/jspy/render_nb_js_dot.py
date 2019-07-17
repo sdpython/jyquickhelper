@@ -11,7 +11,9 @@ class RenderJsDot(RenderJS):
     """
     Renders a graph in a :epkg:`notebook`
     defined in :epkg:`DOT` language
-    with :epkg:`viz.js`.
+    with :epkg:`viz.js`. On `binder
+    <https://mybinder.org/v2/gh/sdpython/jyquickhelper/master?filepath=_doc%2Fnotebooks>`_,
+    arguement *local* should be set to True to be working.
     """
 
     def __init__(self, dot, local=False, width="100%", height="100%", divid=None,

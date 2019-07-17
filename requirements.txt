@@ -2,6 +2,6 @@ coverage
 git+https://github.com/sdpython/nbconvert.git@fixes
 networkx
 pillow
-pyquickhelper>=1.9
+pyquickhelper>=1.9.3179
 sphinx_readable_theme
 wheel

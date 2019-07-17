@@ -32,10 +32,18 @@
     :target: http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/all_notebooks_coverage.html
     :alt: Notebook Coverage
 
+.. image:: https://pepy.tech/badge/jyquickhelper
+    :target: https://pypi.org/project/jyquickhelper/
+    :alt: Downloads
+
 .. _l-README:
 
 jyquickhelper
 =============
+
+.. image:: https://mybinder.org/badge_logo.svg
+    :target: https://mybinder.org/v2/gh/sdpython/jyquickhelper/master?filepath=_doc%2Fnotebooks
+    :alt: Binder
 
 Helpers for Jupyter notebooks.
 Example to run from a notebook:

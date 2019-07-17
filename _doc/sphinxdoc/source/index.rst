@@ -2,8 +2,8 @@
 .. |gitlogo| image:: _static/git_logo.png
              :height: 20
 
-jyquickhelper
-=============
+jyquickhelper - javascript extensions for notebooks
+===================================================
 
 .. image:: https://travis-ci.org/sdpython/jyquickhelper.svg?branch=master
     :target: https://travis-ci.org/sdpython/jyquickhelper
@@ -37,6 +37,10 @@ jyquickhelper
 .. image:: nbcov.png
     :target: http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/all_notebooks_coverage.html
     :alt: Notebook Coverage
+
+.. image:: https://pepy.tech/badge/jyquickhelper
+    :target: https://pypi.org/project/jyquickhelper/
+    :alt: Downloads
 
 Helpers for Jupyter notebooks, implements javascript additions
 such a menu, wraps a json viewer, a graphviz viewer.
@@ -85,6 +89,10 @@ such a menu, wraps a json viewer, a graphviz viewer.
         JSONJS(dict(name="xavier", city="Paris"), html_only=True, show_to_level=3)
 
     See :ref:`nbjsonrst`.
+
+.. image:: https://mybinder.org/badge_logo.svg
+    :target: https://mybinder.org/v2/gh/sdpython/jyquickhelper/master?filepath=_doc%2Fnotebooks
+    :alt: Binder
 
 **Links:** `github <https://github.com/sdpython/jyquickhelper/>`_,
 `documentation <http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/index.html>`_,
