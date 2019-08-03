@@ -36,6 +36,14 @@
     :target: https://pypi.org/project/jyquickhelper/
     :alt: Downloads
 
+.. image:: https://img.shields.io/github/forks/sdpython/jyquickhelper.svg
+    :target: https://github.com/sdpython/jyquickhelper/
+    :alt: Forks
+
+.. image:: https://img.shields.io/github/stars/sdpython/jyquickhelper.svg
+    :target: https://github.com/sdpython/jyquickhelper/
+    :alt: Stars
+
 .. _l-README:
 
 jyquickhelper

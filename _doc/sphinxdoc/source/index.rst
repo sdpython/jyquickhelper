@@ -42,6 +42,14 @@ jyquickhelper - javascript extensions for notebooks
     :target: https://pypi.org/project/jyquickhelper/
     :alt: Downloads
 
+.. image:: https://img.shields.io/github/forks/sdpython/jyquickhelper.svg
+    :target: https://github.com/sdpython/jyquickhelper/
+    :alt: Forks
+
+.. image:: https://img.shields.io/github/stars/sdpython/jyquickhelper.svg
+    :target: https://github.com/sdpython/jyquickhelper/
+    :alt: Stars
+
 Helpers for Jupyter notebooks, implements javascript additions
 such a menu, wraps a json viewer, a graphviz viewer.
 
