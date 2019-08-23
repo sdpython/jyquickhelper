@@ -1,4 +1,12 @@
 
+.. image:: https://github.com/sdpython/jyquickhelper/blob/master/_doc/sphinxdoc/source/phdoc_static/project_ico.png?raw=true
+    :target: https://github.com/sdpython/jyquickhelper/
+
+.. _l-README:
+
+jyquickhelper: javascript extensions for notebooks
+==================================================
+
 .. image:: https://travis-ci.org/sdpython/jyquickhelper.svg?branch=master
     :target: https://travis-ci.org/sdpython/jyquickhelper
     :alt: Build status
@@ -43,11 +51,6 @@
 .. image:: https://img.shields.io/github/stars/sdpython/jyquickhelper.svg
     :target: https://github.com/sdpython/jyquickhelper/
     :alt: Stars
-
-.. _l-README:
-
-jyquickhelper
-=============
 
 .. image:: https://mybinder.org/badge_logo.svg
     :target: https://mybinder.org/v2/gh/sdpython/jyquickhelper/master?filepath=_doc%2Fnotebooks
