@@ -40,8 +40,8 @@ jyquickhelper: javascript extensions for notebooks
     :target: http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/all_notebooks_coverage.html
     :alt: Notebook Coverage
 
-.. image:: https://pepy.tech/badge/jyquickhelper
-    :target: https://pypi.org/project/jyquickhelper/
+.. image:: https://pepy.tech/badge/jyquickhelper/month
+    :target: https://pepy.tech/project/jyquickhelper/month
     :alt: Downloads
 
 .. image:: https://img.shields.io/github/forks/sdpython/jyquickhelper.svg
