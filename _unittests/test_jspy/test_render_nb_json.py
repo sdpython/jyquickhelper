@@ -32,7 +32,7 @@ class TestRenderNbJson(unittest.TestCase):
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
-        import requests
+        import requests  # pylint: disable=C0415
         data_json = requests.get(
             "http://api.worldbank.org/countries?incomeLevel=LMC&format=json").json()
         f = JSONJS(data_json, only_html=True)
@@ -64,7 +64,7 @@ class TestRenderNbJson(unittest.TestCase):
             self._testMethodName,
             OutputPrint=__name__ == "__main__")
 
-        import requests
+        import requests  # pylint: disable=C0415
         data_json = requests.get(
             "http://api.worldbank.org/countries?incomeLevel=LMC&format=json").json()
         f = JSONJS(data_json, only_html=True, local=True)
