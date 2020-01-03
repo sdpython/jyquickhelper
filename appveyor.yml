@@ -21,13 +21,11 @@ init:
 
 install:
   - "%PYTHON%\\python -m pip install --upgrade pip"
-  - "%PYTHON%\\Scripts\\pip install pymyinstall"
-  - "%PYTHON%\\Scripts\\pymy_install3 --set=pyquickhelper"
+  - "%PYTHON%\\Scripts\\pip install -r requirements.txt"
   - "%PYTHON%\\Scripts\\pymy_install3 --task=tool --source=zip graphviz"
   - "%PYTHON%\\Scripts\\pip install pyquickhelper --no-deps"
   - "%PYTHON%\\Scripts\\pip install wcwidth networkx kiwisolver"
   - "set PATH=%PATH%;C:\\projects\\jyquickhelper\\build\\update_modules\\Graphviz\\bin"
-  - "%PYTHON%\\Scripts\\pip install -r requirements.txt"
   - "%PYTHON%\\Scripts\\pip uninstall -y -q jyquickhelper"
   - set PYTHONPATH=src
 build: off
