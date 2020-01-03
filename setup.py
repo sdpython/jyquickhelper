@@ -152,9 +152,13 @@ if not r:
     if len(sys.argv) in (1, 2) and sys.argv[-1] in ("--help-commands",):
         from pyquickhelper.pycode import process_standard_options_for_setup_help
         process_standard_options_for_setup_help(sys.argv)
-    from pyquickhelper.pycode import clean_readme
+    try:
+        from pyquickhelper.pycode import clean_readme
+    except ImportError:
+        clean_readme = None
+    long_description = clean_readme(
+        long_description) if clean_readme is not None else long_description
     from jyquickhelper import __version__ as sversion
-    long_description = clean_readme(long_description)
     setup(
         name=project_var_name,
         version='%s%s' % (sversion, subversion),
