@@ -121,5 +121,4 @@ def JSONJS(data, only_html=True, show_to_level=None, local=False):
     """
     if only_html:
         return RenderJSON(data, show_to_level=show_to_level, local=local)
-    else:
-        return RenderJSONObj(data, show_to_level=show_to_level, local=local)
+    return RenderJSONObj(data, show_to_level=show_to_level, local=local)
