@@ -111,11 +111,11 @@ class RenderJSRaw:
                 for c in self.css:
                     check_url(c)
             if self.libs is not None:
-                for l in self.libs:
-                    if isinstance(l, dict):
-                        check_url(l['path'])
+                for lib in self.libs:
+                    if isinstance(lib, dict):
+                        check_url(lib['path'])
                     else:
-                        check_url(l)
+                        check_url(lib)
 
     def _copy_local(self, css, libs, local):
         """
@@ -190,38 +190,39 @@ class RenderJSRaw:
             shims = {}
             args = []
             exports = []
-            for l in self.libs:
-                if isinstance(l, dict):
-                    name = l.get("name", None)
-                    if "path" in l:
-                        p = l["path"]
+            for lib in self.libs:
+                if isinstance(lib, dict):
+                    name = lib.get("name", None)
+                    if "path" in lib:
+                        p = lib["path"]
                         if name is None:
                             name = ".".join((p.split("/")[-1]).split(".")[:-1])
                         path = ".".join(p.split(".")[:-1])
                         paths.append((name, path))
                     else:
                         raise KeyError(
-                            "unable to find 'path' in {0}".format(l))
+                            "unable to find 'path' in {0}".format(lib))
                     names.append(name)
                     args.append(name)
-                    if "exports" in l:
+                    if "exports" in lib:
                         if name not in shims:
                             shims[name] = {}
-                        shims[name]["exports"] = l["exports"]
-                        if isinstance(l["exports"], list):
-                            exports.extend(l["exports"])
+                        shims[name]["exports"] = lib["exports"]
+                        if isinstance(lib["exports"], list):
+                            exports.extend(lib["exports"])
                         else:
-                            exports.append(l["exports"])
-                    if "deps" in l:
+                            exports.append(lib["exports"])
+                    if "deps" in lib:
                         if name not in shims:
                             shims[name] = {}
-                        shims[name]["deps"] = l["deps"]
+                        shims[name]["deps"] = lib["deps"]
                 else:
-                    names.append(l)
+                    names.append(lib)
             if len(names) == 0:
-                raise ValueError("names is empty.\nlibs={0}\npaths={1}\nshims={2}\nexports={3}".format(self.libs,
-                                                                                                       paths, shims, exports))
-            require = ",".join("'{0}'".format(l) for l in names)
+                raise ValueError(
+                    "names is empty.\nlibs={0}\npaths={1}\nshims={2}\nexports={3}".format(
+                        self.libs, paths, shims, exports))
+            require = ",".join("'{0}'".format(na) for na in names)
 
             config = ["require.config({"]
             if len(paths) > 0:
@@ -255,8 +256,7 @@ class RenderJSRaw:
         if self.only_html:
             ht += "\n<script>\n%s\n</script>" % js
             return ht, None
-        else:
-            return ht, js
+        return ht, js
 
 
 class RenderJSObj(RenderJSRaw):

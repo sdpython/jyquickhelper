@@ -8,7 +8,7 @@ from .helper_in_notebook import add_notebook_menu, set_notebook_name_theNotebook
 from .jspy import JSONJS, RenderJS, RenderJsDot, RenderJsVis
 
 
-__version__ = "0.4"
+__version__ = "0.4.192"
 __author__ = "Xavier Dupré"
 __github__ = "https://github.com/sdpython/jyquickhelper"
 __url__ = "http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/index.html"
