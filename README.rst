@@ -56,6 +56,10 @@ jyquickhelper: javascript extensions for notebooks
     :target: https://mybinder.org/v2/gh/sdpython/jyquickhelper/master?filepath=_doc%2Fnotebooks
     :alt: Binder
 
+.. image:: https://img.shields.io/github/repo-size/sdpython/jyquickhelper
+    :target: https://github.com/sdpython/jyquickhelper/
+    :alt: size
+
 Helpers for Jupyter notebooks.
 Example to run from a notebook:
 
