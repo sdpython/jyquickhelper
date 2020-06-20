@@ -1,6 +1,10 @@
 coverage
+matplotlib
+nbconvert
 networkx
 pillow
+pycodestyle
+pylint
 pyquickhelper>=1.9.3179
 sphinx_readable_theme
 wheel
