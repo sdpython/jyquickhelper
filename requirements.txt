@@ -1,5 +1,6 @@
 coverage
 IPython
+ipywidgets
 matplotlib
 nbconvert
 networkx
