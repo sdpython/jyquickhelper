@@ -2,6 +2,7 @@ coverage
 docutils
 IPython
 ipywidgets
+jupyter_sphinx
 matplotlib
 nbconvert
 networkx
