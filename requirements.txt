@@ -1,4 +1,5 @@
 coverage
+docutils
 IPython
 ipywidgets
 matplotlib
@@ -11,4 +12,5 @@ pylint
 pyquickhelper>=1.9.3179
 requests
 sphinx_readable_theme
+sphinx_gallery
 wheel
