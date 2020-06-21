@@ -6,6 +6,7 @@ matplotlib
 nbconvert
 networkx
 notebook
+pandas
 pillow
 pycodestyle
 pylint
