@@ -13,4 +13,5 @@ pyquickhelper>=1.9.3179
 requests
 sphinx_readable_theme
 sphinx_gallery
+sphinxcontrib.imagesvg
 wheel
