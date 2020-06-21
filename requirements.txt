@@ -3,6 +3,7 @@ IPython
 matplotlib
 nbconvert
 networkx
+notebook
 pillow
 pycodestyle
 pylint
