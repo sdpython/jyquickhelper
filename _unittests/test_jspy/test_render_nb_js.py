@@ -91,10 +91,15 @@ class TestRenderNbJs(unittest.TestCase):
             }
         });
         """
-        f = RenderJS(script, divid="MYID", css=["https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.css"],
-                     libs=[dict(name="d3", path="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js", exports="d3"),
-                           dict(name="c3", path="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.js",
-                                exports="c3", deps=["d3"])])
+        f = RenderJS(
+            script, divid="MYID",
+            css=["https://raw.githubusercontent.com/sdpython/jyquickhelper/master/src/jyquickhelper/js/c3/"
+                 "c3.min.css"],
+            libs=[dict(name="d3", path="https://raw.githubusercontent.com/sdpython/jyquickhelper/master/"
+                                       "src/jyquickhelper/js/d3/d3.min.js", exports="d3"),
+                  dict(name="c3", path="https://raw.githubusercontent.com/sdpython/jyquickhelper/master/"
+                                       "src/jyquickhelper/js/c3/c3.min.js",
+                       exports="c3", deps=["d3"])])
         assert f
         ht, js = f.generate_html()
         assert ht

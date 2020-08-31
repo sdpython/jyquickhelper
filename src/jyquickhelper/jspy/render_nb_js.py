@@ -47,9 +47,9 @@ def check_url(url):
             liburl.urlopen(url)
             return True
         except liberror.HTTPError as e:
-            raise UrlNotFoundError(url, e.code)
+            raise UrlNotFoundError(url, e.code) from e
         except liberror.URLError as e:
-            raise UrlNotFoundError(url, e.reason)
+            raise UrlNotFoundError(url, e.reason) from e
         except Exception as e:
             raise Exception("Issue with url '{0}'".format(url)) from e
 
