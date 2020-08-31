@@ -105,7 +105,8 @@ class TestRenderNbJs(unittest.TestCase):
         assert ht
         assert js
         exp = """<div id="MYID-css"><link rel="stylesheet" """ + \
-              """href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.css" type="text/css" />""" + \
+              """href="https://raw.githubusercontent.com/sdpython/jyquickhelper/master/src/jyquickhelper/js/c3/c3.min.css" """ + \
+              """type="text/css" />""" + \
               """<div id="MYID" style="width:100%;height:100%;"></div></div>"""
 
         if exp not in ht:
@@ -114,8 +115,8 @@ class TestRenderNbJs(unittest.TestCase):
         exp = """
             require.config({
             paths:{
-            'd3':'https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min',
-            'c3':'https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min',
+            'd3':'https://raw.githubusercontent.com/sdpython/jyquickhelper/master/src/jyquickhelper/js/d3/d3.min',
+            'c3':'https://raw.githubusercontent.com/sdpython/jyquickhelper/master/src/jyquickhelper/js/c3/c3.min',
             },
             shim:{
             'c3':{'deps':['d3'],'exports':'c3'},
