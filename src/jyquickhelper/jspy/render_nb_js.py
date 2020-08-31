@@ -3,17 +3,12 @@
 @file
 @brief Helpers around JSON
 """
-import sys
 import uuid
 import os
 import shutil
+import urllib.request as liburl
+import urllib.error as liberror
 from IPython.display import display_html, display_javascript
-
-if sys.version_info[0] < 3:
-    import urllib2 as liburl
-else:
-    import urllib.request as liburl
-    import urllib.error as liberror
 
 
 class UrlNotFoundError(Exception):
@@ -35,23 +30,15 @@ class JavascriptScriptError(ValueError):
 
 def check_url(url):
     "Checks urls."
-    if sys.version_info[0] < 3:
-        ret = liburl.urlopen(url)
-        if ret.code == 200:
-            ret.close()
-            return True
-        else:
-            raise UrlNotFoundError(url, ret.code)
-    else:
-        try:
-            liburl.urlopen(url)
-            return True
-        except liberror.HTTPError as e:
-            raise UrlNotFoundError(url, e.code) from e
-        except liberror.URLError as e:
-            raise UrlNotFoundError(url, e.reason) from e
-        except Exception as e:
-            raise Exception("Issue with url '{0}'".format(url)) from e
+    try:
+        liburl.urlopen(url)
+        return True
+    except liberror.HTTPError as e:
+        raise UrlNotFoundError(url, e.code) from e
+    except liberror.URLError as e:
+        raise UrlNotFoundError(url, e.reason) from e
+    except Exception as e:
+        raise Exception("Issue with url '{0}'".format(url)) from e
 
 
 class RenderJSRaw:
