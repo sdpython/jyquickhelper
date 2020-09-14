@@ -4,7 +4,6 @@ IPython
 ipywidgets
 jupyter_sphinx
 matplotlib
-nbconvert!=6.0.2
 networkx
 notebook
 pandas
