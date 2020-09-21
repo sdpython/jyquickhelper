@@ -18,15 +18,13 @@ jobs:
           name: Install pandoc
           command: |
                     sudo apt-get update 
-                    wget https://github.com/jgm/pandoc/releases/download/2.2.1/pandoc-2.2.1-1-amd64.deb
-                    sudo dpkg -i pandoc-2.2.1-1-amd64.deb
+                    wget https://github.com/jgm/pandoc/releases/download/2.10.1/pandoc-2.10.1-1-amd64.deb
+                    sudo dpkg -i pandoc-2.10.1-1-amd64.deb
           
       - run:
           name: Install tex
           command: |
-                    sudo apt-get install -y texlive
-                    sudo apt-get install -y texlive-latex-extra
-                    sudo apt-get install -y dvipng
+                    sudo apt-get install -y texlive texlive-latex-extra dvipng
           
       - run:
           name: Install 7z, unrar
