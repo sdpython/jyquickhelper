@@ -16,7 +16,7 @@ install:
   - $PYINT -m pip uninstall jyquickhelper -y
 
 script:
-  - { CMD: "$PYINT -u setup.py unittests", NAME: "UT" }
+  - { CMD: "$PYINT -u setup.py unittests --covtoken=24e81424-08ba-4ca7-be23-66c12926565f", NAME: "UT" }
   - { CMD: "$PYINT -u setup.py unittests_LONG", NAME: "UT_LONG" }
 
 after_script:
