@@ -56,5 +56,6 @@ setup(
     packages=packages,
     package_dir=package_dir,
     package_data=package_data,
-    install_requires=['ipython', 'jupyter', 'notebook', 'pyquicksetup>=0.2'],
+    setup_requires=['pyquicksetup>=0.2'],
+    install_requires=['ipython', 'jupyter', 'notebook'],
 )
