@@ -12,6 +12,7 @@ pillow
 pycodestyle
 pylint
 pyquickhelper>=1.10
+pyquicksetup>=0.2
 requests
 sphinx_gallery
 sphinxcontrib.imagesvg
