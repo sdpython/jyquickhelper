@@ -8,8 +8,8 @@
 jyquickhelper: javascript extensions for notebooks
 ==================================================
 
-.. image:: https://travis-ci.org/sdpython/jyquickhelper.svg?branch=master
-    :target: https://travis-ci.org/sdpython/jyquickhelper
+.. image:: https://travis-ci.com/sdpython/jyquickhelper.svg?branch=master
+    :target: https://travis-ci.com/sdpython/jyquickhelper
     :alt: Build status
 
 .. image:: https://ci.appveyor.com/api/projects/status/2tyc3or7snm6w4xl?svg=true
