@@ -31,7 +31,7 @@ class JavascriptScriptError(ValueError):
 def check_url(url):
     "Checks urls."
     try:
-        liburl.urlopen(url)
+        liburl.urlopen(url)  # pylint: disable=R1732
         return True
     except liberror.HTTPError as e:
         raise UrlNotFoundError(url, e.code) from e

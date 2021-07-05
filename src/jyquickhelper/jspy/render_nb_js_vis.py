@@ -82,12 +82,12 @@ class RenderJsVis(RenderJS):
 
         if local:
             this = os.path.dirname(__file__)
-            libs = [dict(path=os.path.join(this, '..', 'js',
-                                           'visjs', j), name=j.split('.')[0]) for j in libs]
+            libs = [dict(path=os.path.join(this, '..', 'js', 'visjs', j),
+                         name=j.split('.')[0]) for j in libs]  # pylint: disable=C0207
             css = [os.path.join(this, '..', 'js', 'visjs', j) for j in css]
         else:
-            libs = [dict(path='http://www.xavierdupre.fr/js/visjs/' +
-                         j, name=j.split('.')[0]) for j in libs]
+            libs = [dict(path='http://www.xavierdupre.fr/js/visjs/' + j,
+                         name=j.split('.')[0]) for j in libs]  # pylint: disable=C0207
             css = ['http://www.xavierdupre.fr/js/visjs/' + j for j in css]
         return libs, css
 
