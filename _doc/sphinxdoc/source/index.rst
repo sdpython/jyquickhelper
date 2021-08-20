@@ -9,7 +9,7 @@ jyquickhelper: javascript extensions for notebooks
 ==================================================
 
 .. image:: https://travis-ci.com/sdpython/jyquickhelper.svg?branch=master
-    :target: https://travis-ci.com/sdpython/jyquickhelper
+    :target: https://app.travis-ci.com/github/sdpython/jyquickhelper
     :alt: Build status
 
 .. image:: https://ci.appveyor.com/api/projects/status/2tyc3or7snm6w4xl?svg=true
