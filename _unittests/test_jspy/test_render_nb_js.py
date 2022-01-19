@@ -4,7 +4,6 @@
 import unittest
 from io import StringIO
 from contextlib import redirect_stdout
-from pyquickhelper.loghelper import fLOG
 from pyquickhelper.pycode import skipif_circleci
 from jyquickhelper import RenderJS
 from jyquickhelper.jspy.render_nb_js import RenderJSObj
@@ -14,11 +13,6 @@ class TestRenderNbJs(unittest.TestCase):
 
     @skipif_circleci('output is empty, probably already captured, should be investigated')
     def test_render_nb_js(self):
-        fLOG(
-            __file__,
-            self._testMethodName,
-            OutputPrint=__name__ == "__main__")
-
         testoutput = True
         try:
             f = RenderJSObj("", css=["_css"], libs=["_libs"])
@@ -75,11 +69,6 @@ class TestRenderNbJs(unittest.TestCase):
         self.assertIn("require(['_libs'], function() {", res)
 
     def test_render_nb_js_config(self):
-        fLOG(
-            __file__,
-            self._testMethodName,
-            OutputPrint=__name__ == "__main__")
-
         script = """
          var chart = c3.generate({
             bindto: '#__ID__',

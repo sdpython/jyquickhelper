@@ -8,6 +8,7 @@ import os
 import shutil
 import urllib.request as liburl
 import urllib.error as liberror
+import IPython.core.display as ipydisplay
 from IPython.display import display_html, display_javascript
 
 
@@ -256,6 +257,10 @@ class RenderJSObj(RenderJSRaw):
         overloads method
         `_ipython_display_ <http://ipython.readthedocs.io/en/stable/config/integrating.html?highlight=Integrating%20>`_.
         """
+        if 'display' not in dir(ipydisplay):
+            # Weird bug introduced in IPython 8.0.0
+            import IPython.core.display_functions
+            ipydisplay.display = IPython.core.display_functions.display
         ht, js = self.generate_html()
         if js is None:
             display_html(ht, raw=True)
