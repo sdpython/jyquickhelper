@@ -4,7 +4,6 @@
 @brief Functions to call from the notebook
 """
 from IPython.display import Javascript, HTML
-from IPython.core.display import display as jdisp
 
 
 def set_notebook_name_theNotebook(name="theNotebook", display=True):
@@ -30,6 +29,8 @@ def set_notebook_name_theNotebook(name="theNotebook", display=True):
 
     Try function @see fn store_notebook_path if this one does not work.
     """
+    from IPython.core.display import display as jdisp  # pylint: disable=E0611
+
     code = """var kernel = IPython.notebook.kernel;
               var body = document.body, attribs = body.attributes;
               var command = "__NAME__ = " + "'"+attribs['data-notebook-name'].value+"'";
