@@ -17,7 +17,7 @@ readme = 'README.rst'
 history = "HISTORY.rst"
 requirements = None
 
-KEYWORDS = project_var_name + ', Xavier Dupré'
+KEYWORDS = [project_var_name, 'Xavier Dupré', 'notebook', 'javascript']
 DESCRIPTION = """Helpers for Jupyter notebooks: automated menu, JSON visualizer, plug javascript"""
 CLASSIFIERS = [
     'Programming Language :: Python :: 3',
