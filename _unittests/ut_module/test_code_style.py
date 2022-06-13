@@ -14,7 +14,7 @@ class TestCodeStyle(ExtTestCase):
         thi = os.path.abspath(os.path.dirname(__file__))
         src_ = os.path.normpath(os.path.join(thi, "..", "..", "src"))
         check_pep8(src_, fLOG=fLOG,
-                   pylint_ignore=('C0103', 'C1801', 'R0201', 'R1705', 'W0108', 'W0613',
+                   pylint_ignore=('C0103', 'C1801', 'R1705', 'W0108', 'W0613',
                                   'C0111', "W0212", 'C0415', 'C0209', 'W0107'),
                    skip=["Unable to import 'urllib2'",
                          "Redefining built-in 'format'",
@@ -25,7 +25,7 @@ class TestCodeStyle(ExtTestCase):
         thi = os.path.abspath(os.path.dirname(__file__))
         test = os.path.normpath(os.path.join(thi, "..", ))
         check_pep8(test, fLOG=fLOG, neg_pattern="temp_.*",
-                   pylint_ignore=('C0103', 'C1801', 'R0201', 'R1705', 'W0108', 'W0613',
+                   pylint_ignore=('C0103', 'C1801', 'R1705', 'W0108', 'W0613',
                                   'C0111', "W0212", 'C0415', 'C0209', 'W0107'),
                    skip=["Instance of 'RenderJsVis' has no '_ipython_display_'",
                          "Instance of 'RenderJsDot' has no '_ipython_display_'",
