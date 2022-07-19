@@ -53,7 +53,7 @@ class RenderJSONRaw:
         this = os.path.dirname(__file__)
         js = os.path.join(this, '..', 'js', 'renderjson', 'renderjson.js')
         if not os.path.exists(js):
-            raise FileNotFoundError("Unable to find '{0}'".format(js))
+            raise FileNotFoundError(f"Unable to find '{js}'")
         dest = local if isinstance(local, str) else os.getcwd()
         shutil.copy(js, dest)
 
@@ -92,7 +92,7 @@ class RenderJSON(RenderJSONRaw):
 
     def _repr_html_(self):
         ht, js = self.generate_html()
-        ht += "\n<script>\n{0}\n</script>\n".format(js)
+        ht += f"\n<script>\n{js}\n</script>\n"
         return ht
 
 

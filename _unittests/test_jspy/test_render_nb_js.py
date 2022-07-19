@@ -99,7 +99,7 @@ class TestRenderNbJs(unittest.TestCase):
               """<div id="MYID" style="width:100%;height:100%;"></div></div>"""
 
         if exp not in ht:
-            raise Exception('Unable to find\n{0}\n--IN--\n{1}'.format(exp, ht))
+            raise Exception(f'Unable to find\n{exp}\n--IN--\n{ht}')
 
         exp = """
             require.config({

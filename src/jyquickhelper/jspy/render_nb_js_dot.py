@@ -75,6 +75,6 @@ class RenderJsDot(RenderJS):
         @return             javascript
         """
         dot = dot.replace('"', '\\"').replace('\n', '\\n')
-        script = """var svgGraph = Viz("{0}");\ndocument.getElementById('__ID__').innerHTML = svgGraph;""".format(
-            dot)
+        script = f"""var svgGraph = Viz("{dot}");
+document.getElementById('__ID__').innerHTML = svgGraph;"""
         return script

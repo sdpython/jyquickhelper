@@ -40,13 +40,13 @@ class TestJsVersion(unittest.TestCase):
                 fold) if os.path.splitext(_)[-1] == '.js']
             if len(js) == 0:
                 raise FileNotFoundError(
-                    "({2}) No js found for '{0}' in '{1}'.".format(name, fold, i))
+                    f"({i}) No js found for '{name}' in '{fold}'.")
             if 'custom' in name:
                 continue
             lic = [_ for _ in os.listdir(fold) if 'LICENSE' in _]
             if len(lic) == 0:
                 raise FileNotFoundError(
-                    "({2}) No license found for '{0}' in '{1}'.".format(name, fold, i))
+                    f"({i}) No license found for '{name}' in '{fold}'.")
 
 
 if __name__ == "__main__":

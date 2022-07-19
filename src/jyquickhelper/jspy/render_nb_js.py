@@ -19,7 +19,7 @@ class UrlNotFoundError(Exception):
 
     def __init__(self, url, code):
         Exception.__init__(
-            self, "Url not found: returned code={0} for '{1}'".format(code, url))
+            self, f"Url not found: returned code={code} for '{url}'")
 
 
 class JavascriptScriptError(ValueError):
@@ -39,7 +39,7 @@ def check_url(url):
     except liberror.URLError as e:
         raise UrlNotFoundError(url, e.reason) from e
     except Exception as e:
-        raise Exception("Issue with url '{0}'".format(url)) from e
+        raise Exception(f"Issue with url '{url}'") from e
 
 
 class RenderJSRaw:
@@ -76,22 +76,22 @@ class RenderJSRaw:
         if style is None:
             style = ''
             if width is not None and 'width' not in style:
-                style += "width:{0};".format(width)
+                style += f"width:{width};"
             if height is not None and 'height' not in style:
-                style += "height:{0};".format(height)
+                style += f"height:{height};"
             if not style:
                 style = None
         else:
             if width is not None and 'width' not in style:
-                style += "width:{0};".format(width)
+                style += f"width:{width};"
             if height is not None and 'height' not in style:
-                style += "height:{0};".format(height)
+                style += f"height:{height};"
         self.style = style
         self.only_html = only_html
         self.div_class = div_class
         if "__ID__" not in script:
             raise JavascriptScriptError(
-                "The sript does not contain any string __ID__. It is replaced by the ID value in script:\n{0}".format(script))
+                f"The sript does not contain any string __ID__. It is replaced by the ID value in script:\n{script}")
         self.local = local
         self.css, self.libs = self._copy_local(css, libs, local)
         if check_urls and not local:
@@ -128,7 +128,7 @@ class RenderJSRaw:
 
         for js in to_copy:
             if not os.path.exists(js):
-                raise FileNotFoundError("Unable to find '{0}'".format(js))
+                raise FileNotFoundError(f"Unable to find '{js}'")
             dest = local if isinstance(local, str) else os.getcwd()
             shutil.copy(js, dest)
 
@@ -155,16 +155,16 @@ class RenderJSRaw:
                     `Javascript <http://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#IPython.display.Javascript>`_ text
         """
         if self.style:
-            style = ' style="{0}"'.format(self.style)
+            style = f' style="{self.style}"'
         else:
             style = ""
         if self.div_class:
-            divcl = ' class="{0}"'.format(self.div_class)
+            divcl = f' class="{self.div_class}"'
         else:
             divcl = ""
         if self.css:
             css = "".join(
-                '<link rel="stylesheet" href="{0}" type="text/css" />'.format(c) for c in self.css)
+                f'<link rel="stylesheet" href="{c}" type="text/css" />' for c in self.css)
             ht = '<div id="{uuid}-css">{css}<div{divcl} id="{uuid}"{style}></div></div>'.format(
                 uuid=self.uuid, css=css, style=style, divcl=divcl)
         else:
@@ -189,7 +189,7 @@ class RenderJSRaw:
                         paths.append((name, path))
                     else:
                         raise KeyError(
-                            "unable to find 'path' in {0}".format(lib))
+                            f"unable to find 'path' in {lib}")
                     names.append(name)
                     args.append(name)
                     if "exports" in lib:
@@ -210,13 +210,13 @@ class RenderJSRaw:
                 raise ValueError(
                     "names is empty.\nlibs={0}\npaths={1}\nshims={2}\nexports={3}".format(
                         self.libs, paths, shims, exports))
-            require = ",".join("'{0}'".format(na) for na in names)
+            require = ",".join(f"'{na}'" for na in names)
 
             config = ["require.config({"]
             if len(paths) > 0:
                 config.append("paths:{")
                 for name, path in paths:
-                    config.append("'{0}':'{1}',".format(name, path))
+                    config.append(f"'{name}':'{path}',")
                 config.append("},")
             if len(shims) > 0:
                 config.append("shim:{")
@@ -229,7 +229,7 @@ class RenderJSRaw:
                             k, v if isinstance(v, list) else "'{0}'".format(v)))
                     return "{%s}" % ",".join(rows)
                 for k, v in sorted(shims.items()):
-                    config.append("'{0}':{1},".format(k, vd(v)))
+                    config.append(f"'{k}':{vd(v)},")
                 config.append("},")
             config.append("});")
             if len(config) > 2:
@@ -242,7 +242,7 @@ class RenderJSRaw:
         else:
             js = script
         if self.only_html:
-            ht += "\n<script>\n%s\n</script>" % js
+            ht += f"\n<script>\n{js}\n</script>"
             return ht, None
         return ht, js
 
@@ -280,5 +280,5 @@ class RenderJS(RenderJSRaw):
         """
         ht, js = self.generate_html()
         if js is not None:
-            ht += "\n<script>\n{0}\n</script>\n".format(js)
+            ht += f"\n<script>\n{js}\n</script>\n"
         return ht

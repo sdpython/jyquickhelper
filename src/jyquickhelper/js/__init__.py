@@ -19,7 +19,7 @@ def install_extension(ext, overwrite=False):
     path = os.path.join(this, ext)
     if not os.path.exists(path):
         raise FileNotFoundError(
-            "Unable to find extension '{0}' in '{1}'".format(ext, this))
+            f"Unable to find extension '{ext}' in '{this}'")
     dest = install_nbextension(
         path, user=True, destination=ext, overwrite=overwrite)
     return dest
@@ -52,7 +52,7 @@ def load_extension(ext, kind='html', overwrite=False):
                 <p>Loads extension '__EXT__'.</p>""".replace("                ", "")
     code = code.replace('__EXT__', ext)
     code = code.replace('__REQ__', ',\n'.join(
-        "'{0}/{1}'".format(ext, _) for _ in js))
+        f"'{ext}/{_}'" for _ in js))
     code = code.replace('__CSS__', ';\n'.join(
         "load_jyq_css_{0}('{0}/{1}')".format(ext, _) for _ in css) + ';')
     if kind == "html":

@@ -199,8 +199,7 @@ def add_notebook_menu(menu_id="my_id_menu_nb", raw=False, format="html", header=
     """
     if keep_item is not None:
         menu_id += str(keep_item)
-    html = '<div id="{0}">run previous cell, wait for 2 seconds</div>'.format(
-        menu_id)
+    html = f'<div id="{menu_id}">run previous cell, wait for 2 seconds</div>'
 
     add_notebook_menu_js = _add_notebook_menu_js()
     js = add_notebook_menu_js.replace("                ", "") \
@@ -208,13 +207,13 @@ def add_notebook_menu(menu_id="my_id_menu_nb", raw=False, format="html", header=
                              .replace("__FIRST__", str(first_level)) \
                              .replace("__LAST__", str(last_level))
 
-    full = "{0}\n<script>{1}</script>".format(html, js)
+    full = f"{html}\n<script>{js}</script>"
     if keep_item is None:
         keep_item = -1
 
     if format == "html":
         if header is not None and len(header) > 0:
-            header = "<b>{0}</b>\n".format(header)
+            header = f"<b>{header}</b>\n"
         else:
             header = ""
         full = header + \
@@ -226,7 +225,7 @@ def add_notebook_menu(menu_id="my_id_menu_nb", raw=False, format="html", header=
             .replace("__END_FORMAT__", "'</li>'")
     elif format == "rst":
         if header is not None and len(header) > 0:
-            header = "{0}\n\n".format(header)
+            header = f"{header}\n\n"
         else:
             header = ""
         full = header + \
@@ -254,4 +253,4 @@ def load_extension(name):
 
     @param      name        extension name
     """
-    return Javascript("IPython.utils.load_extensions('%s')" % name)
+    return Javascript(f"IPython.utils.load_extensions('{name}')")

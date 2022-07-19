@@ -78,7 +78,7 @@ class RenderJsVis(RenderJS):
             ]
         else:
             raise NotImplementedError(
-                "Unable to generate a script for class '{0}'".format(class_vis))
+                f"Unable to generate a script for class '{class_vis}'")
 
         if local:
             this = os.path.dirname(__file__)
@@ -124,14 +124,14 @@ class RenderJsVis(RenderJS):
                                                       'sortMethod': "directed"}}
             else:
                 opts = {k: v for k, v in options.items() if v is not None}
-            st = 'var options = {0};'.format(RenderJsVis._options2js(opts))
+            st = f'var options = {RenderJsVis._options2js(opts)};'
             jsadd += "\n" + st + "\n"
 
         checks = ['var data =', 'var options =']
         for ch in checks:
             if ch not in jsadd:
                 raise JavascriptVisError(
-                    "String '{0}' was not found in\n{1}".format(ch, js))
+                    f"String '{ch}' was not found in\n{js}")
         script = jsadd + "\nvar container = document.getElementById('__ID__');" + \
             "\nvar network = new vis.Network(container, data, options);\n"
         return script
@@ -150,7 +150,7 @@ class RenderJsVis(RenderJS):
             if isinstance(v, dict):
                 rows.append(RenderJsVis._options2js(v))
             else:
-                rows.append('"{0}"'.format(v))
+                rows.append(f'"{v}"')
             rows.append(', ')
         rows.append('}')
         return "".join(rows)
