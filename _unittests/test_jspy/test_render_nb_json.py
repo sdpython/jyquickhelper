@@ -2,18 +2,12 @@
 @brief      test log(time=2s)
 """
 import unittest
-from pyquickhelper.loghelper import fLOG
 from jyquickhelper import JSONJS
 
 
 class TestRenderNbJson(unittest.TestCase):
 
     def test_render_nb_json(self):
-        fLOG(
-            __file__,
-            self._testMethodName,
-            OutputPrint=__name__ == "__main__")
-
         f = JSONJS(dict(a="a"))
         assert f
         if hasattr(f, "_ipython_display_"):
@@ -27,11 +21,6 @@ class TestRenderNbJson(unittest.TestCase):
         self.assertIn('require(["https', r)
 
     def test_render_nb_json_api(self):
-        fLOG(
-            __file__,
-            self._testMethodName,
-            OutputPrint=__name__ == "__main__")
-
         import requests  # pylint: disable=C0415
         data_json = requests.get(
             "http://api.worldbank.org/countries?incomeLevel=LMC&format=json").json()
@@ -41,11 +30,6 @@ class TestRenderNbJson(unittest.TestCase):
         self.assertIn('require(["https', r)
 
     def test_render_nb_json_local(self):
-        fLOG(
-            __file__,
-            self._testMethodName,
-            OutputPrint=__name__ == "__main__")
-
         f = JSONJS(dict(a="a"), local=True)
         assert f
         if hasattr(f, "_ipython_display_"):
@@ -59,14 +43,10 @@ class TestRenderNbJson(unittest.TestCase):
         self.assertIn('require(["renderjson.js"]', r)
 
     def test_render_nb_json_api_local(self):
-        fLOG(
-            __file__,
-            self._testMethodName,
-            OutputPrint=__name__ == "__main__")
-
         import requests  # pylint: disable=C0415
         data_json = requests.get(
-            "http://api.worldbank.org/countries?incomeLevel=LMC&format=json").json()
+            "http://api.worldbank.org/countries?incomeLevel=LMC&format=json",
+            timeout=5).json()
         f = JSONJS(data_json, only_html=True, local=True)
         assert f
         r = f._repr_html_()
@@ -74,4 +54,4 @@ class TestRenderNbJson(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)
