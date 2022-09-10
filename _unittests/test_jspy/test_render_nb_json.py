@@ -23,7 +23,8 @@ class TestRenderNbJson(unittest.TestCase):
     def test_render_nb_json_api(self):
         import requests  # pylint: disable=C0415
         data_json = requests.get(
-            "http://api.worldbank.org/countries?incomeLevel=LMC&format=json").json()
+            "http://api.worldbank.org/countries?incomeLevel=LMC&format=json",
+            timeout=5).json()
         f = JSONJS(data_json, only_html=True)
         assert f
         r = f._repr_html_()
