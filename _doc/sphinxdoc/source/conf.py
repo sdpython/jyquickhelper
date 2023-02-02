@@ -18,7 +18,7 @@ set_sphinx_variables(__file__, "jyquickhelper", "Xavier Dupré", 2023,
 
 blog_root = "http://www.xavierdupre.fr/app/jyquickhelper/helpsphinx/"
 html_css_files = ['my-styles.css']
-html_logo = "phdoc_static/project_ico.png"
+html_logo = "_static/project_ico.png"
 html_sidebars = {}
 
 language = "en"
