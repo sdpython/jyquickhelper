@@ -39,7 +39,7 @@ def check_url(url):
     except liberror.URLError as e:
         raise UrlNotFoundError(url, e.reason) from e
     except Exception as e:
-        raise Exception(f"Issue with url '{url}'") from e
+        raise AssertionError(f"Issue with url '{url}'") from e
 
 
 class RenderJSRaw:
